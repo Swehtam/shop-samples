@@ -3,9 +3,9 @@
 	
 	var productList = [];
 	var cartList = [];
-	var product1 = {id: 12, name: "maçã", value: 0.50, category: "1", img: "img/a.jpg"};
-	var product2 = {id: 56, name: "banana", value: 50, category: "3", img: "img/logoblack.png"};
-	var product3 = {id: 23, name: "uva", value: 1.5, category: "2", img: "img/a.jpg"};
+	var product1 = {id: 12, name: "maçã", value: 0.50, category: "1", img: "images/a.jpg"};
+	var product2 = {id: 56, name: "banana", value: 50, category: "3", img: "images/logoblack.png"};
+	var product3 = {id: 23, name: "uva", value: 1.5, category: "2", img: "images/a.jpg"};
 	productList.push(product1);
 	productList.push(product2);
 	productList.push(product3);
