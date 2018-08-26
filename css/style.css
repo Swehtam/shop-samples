@@ -37,7 +37,7 @@ a{text-decoration: none;}
 	min-height: 90px;
 	border-bottom: 1px solid #bfb4b4;
 }
-.logo-nav img{
+.logo-nav a img{
 	float: left;
 	width: 100px;
 	margin-left: 90px;
@@ -60,7 +60,7 @@ a{text-decoration: none;}
 .content-wrapper .categories{
 	float: left;
 	width: 250px;	
-	margin: 20px 10px 0 90px;
+	margin: 20px 40px 0 90px;
 	
 }
 .categories .categories-header{
@@ -108,19 +108,49 @@ a{text-decoration: none;}
 	background-color: #fafafc;
 }
 
-#products-list{
+.products-list{
 	display: table;
 	border: 3px solid #111;
-	width: auto;
+	max-width: 875px;
 	float: center;
-	margin: 10px 10px;
+	margin: 45px 10px 0px 10px;
 }
 .product{
-	width: 5vw;
-	height: 5vw;
+	width: 12vw;
+	height: 10vw;
 	display: table;
 	float:left;
 	margin: 5px 5px;
 	border: 1px solid #111;
+	border-radius: 3px;
 	text-align: center;
+}
+.product h3,span{
+	color: #111;
+	font-weight: 700;
+	font-size: 13px;	
+}
+.product button{
+	cursor: pointer;
+	width: 70%;
+	color: #fff;
+	font-weight: 700;
+	text-transform: uppercase;
+	background-color: #111;
+	border-radius: 3px;
+	padding: 3% 3%;
+	margin: 5px 0px;
+}
+/* Nav-menu */
+.nav-menu{
+	margin-top: 40px;
+	
+}
+.nav-menu h1 a{
+	font-weight: 700;
+	color: #111;
+	font-size: 28px;
+}
+.nav-menu h1 a:hover{
+	text-decoration: underline;
 }
