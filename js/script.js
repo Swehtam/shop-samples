@@ -3,9 +3,9 @@
 	
 	var productList = [];
 	var cartList = [];
-	var product1 = {id: '12', name: "Maçã", value: 0.50, category: "1", img: "images/a.jpg"};
-	var product2 = {id: '56', name: "Banana", value: 50, category: "3", img: "images/logoblack.png"};
-	var product3 = {id: '23', name: "Uva", value: 1.5, category: "2", img: "images/a.jpg"};
+	var product1 = {id: '12', name: "Maçã", value: 0.50, category: "1", img: "images/no-pic.jpg"};
+	var product2 = {id: '56', name: "Banana", value: 50.00, category: "3", img: "images/no-pic.jpg"};
+	var product3 = {id: '23', name: "Uva", value: 1.50, category: "2", img: "images/no-pic.jpg"};
 	productList.push(product1);
 	productList.push(product2);
 	productList.push(product3);
@@ -15,17 +15,27 @@
 	productList.push(product1);
 	productList.push(product2);
 	productList.push(product3);
+	productList.push(product1);
+	productList.push(product3);
+	productList.push(product1);
+	productList.push(product2);
+	productList.push(product3);
+	productList.push(product1);
+	productList.push(product3);
+	productList.push(product1);
+	productList.push(product2);
+	productList.push(product3);
+	productList.push(product1);
 	var sum = 0;
 	
 	$(function() {
 		menuToggles();		
 		addProduct();
-		chooseCategory();
-		
+		chooseCategory();		
 	});
 	
 	
-
+	
 	function fadeToggles(e){
 
 		$(e.data.child).fadeToggle();
@@ -63,23 +73,50 @@
 		loadProduts();
 		$('#12 button').on("click", function(){			
 			cartList.push(product1);
+			appendProductCart(product1);
 			sumProducts(product1.value);
 		});
 		$('#56 button').on("click", function(){			
 			cartList.push(product2);
+			appendProductCart(product2);
 			sumProducts(product2.value);
 		});
 		$('#23 button').on("click", function(){
 			cartList.push(product3);
+			appendProductCart(product3);
 			sumProducts(product1.value);
 		});
 
 		
 	}
-	
+/*
+	function removeProductCart(){
+		loadProduts();
+		$('#pc1 i').on("click", function(){			
+			removeProduct(product1);
+		});
+		
+	}
+	function removeProduct(product){
+		$('#'+product.id).empty();
+		for(var i=0; i<cartList.length; i++){
+			if(cartList[i].id == product.id){
+				cartList.splice(i, 1);
+			}
+		}
+		for(var i=0; i<cartList.length; i++){
+			console.log(cartList[i].name);
+		}
+	}
+*/
+	function appendProductCart(product){
+		$('.cart-list').append(
+				'<li class="product-cart" id="pc'+ product.id +'">'+ product.name+' - $'+ product.value+'</li>'); 
+
+	}
 	function sumProducts(value){
 		sum += value;
-		document.getElementById('value').innerHTML = sum + "R$";
+		document.getElementById('value-cart').innerHTML = "Total = $"+ sum;
 	}
 	
 	function loadProduts(){
