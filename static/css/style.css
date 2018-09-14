@@ -1,0 +1,156 @@
+/* RESET - Tornando acessível a mais navegdores. */
+*{margin: 0; padding: 0; font-size: 100%;  font-family: 'Lato', sans-serif; font-weight: 300; box-sizing: border-box; border: none; outline: none;}
+body{background-color: #fff;}
+img{max-width: 100%;}
+ul{list-style: none;}
+a{text-decoration: none;}
+.container{
+	width: 100%; float: left;
+}
+/* Header */
+
+.header-info{
+	width: 100%;
+	min-height: 45px;
+	background-color: #f97e77;
+	float: left;
+	 
+}
+
+.header-info .header-message{
+	color: #fff;
+	float: left;
+	display: inline-block;
+	margin-left: 90px;
+	font-weight: 400;
+	font-size: 15px;
+	margin-top: 10px;
+}
+.header-info .header-message i{
+	margin-right: 10px;
+
+}
+/* Logo Nav*/
+.logo-nav{
+	float: left;
+	width: 100%;
+	min-height: 90px;
+	border-bottom: 1px solid #bfb4b4;
+}
+.logo-nav a img{
+	float: left;
+	width: 100px;
+	margin-left: 90px;
+}
+.logo-nav .cart{
+	float: right;
+	color: #111;
+	margin-top: 35px;
+	margin-right: 100px;
+}
+.logo-nav .cart i{
+	margin-right: 5px;
+	color: #f97e77;
+}
+/*Main*/
+.content-wrapper{
+	float: left;
+	width: 100%;
+}
+.content-wrapper .categories{
+	float: left;
+	width: 250px;	
+	margin: 20px 40px 0 90px;
+	
+}
+.categories .categories-header{
+	float: left;
+	width: 250px;	
+	background-color: #111;
+}
+.categories .categories-header h1{
+	font-size: 20px;
+	font-weight: 395;
+	padding: 5% 4%;
+	color: white;
+	text-align: left;
+}
+.categories .parent-product{
+	float: left;
+	width: 250px;
+	padding: 4% 4%;
+	margin-left:-11px;
+	margin-top: -10px;
+	margin-bottom: -8px;
+}
+.categories .parent-product li{
+	background-color: #fafafc;
+	width: 250px;
+	border: 1px solid #bfb4b4;
+	padding: 4% 4%;
+	font-size: 13px;
+	font-weight: 700;
+	color: #111;
+	cursor: pointer;
+}
+.categories .parent-product li i{
+	float: right;
+	margin-right: 25px;
+}
+.child-product{
+	display: none;
+	width: 250px;
+	margin:10px 0px 10px -11px;	
+	float: left;
+
+}
+.child-product li{
+	background-color: #fafafc;
+}
+
+.products-list{
+	display: table;
+	border: 3px solid #111;
+	max-width: 875px;
+	float: center;
+	margin: 45px 10px 0px 10px;
+}
+.product{
+	width: 12vw;
+	height: 10vw;
+	display: table;
+	float:left;
+	margin: 5px 5px;
+	border: 1px solid #111;
+	border-radius: 3px;
+	text-align: center;
+}
+.product h3,span{
+	color: #111;
+	font-weight: 700;
+	font-size: 13px;	
+}
+.product button{
+	cursor: pointer;
+	width: 70%;
+	color: #fff;
+	font-weight: 700;
+	text-transform: uppercase;
+	background-color: #111;
+	border-radius: 3px;
+	padding: 3% 3%;
+	margin: 5px 0px;
+}
+/* Nav-menu */
+.nav-menu{
+	margin-top: 40px;
+	
+}
+.nav-menu h1 a{
+	font-weight: 700;
+	color: #111;
+	font-size: 28px;
+}
+.nav-menu h1 a:hover{
+	text-decoration: underline;
+}
