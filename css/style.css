@@ -194,7 +194,57 @@ a{text-decoration: none;}
 	font-weight: 700;
 	color: #111;
 	font-size: 28px;
+	margin-right: 5px;
 }
+.nav-menu h1 i{
+	margin-right: 5px;
+}
+
 .nav-menu h1 a:hover{
 	text-decoration: underline;
+}
+/*Product Page*/
+.product-content{	
+	border: 3px solid #111;
+	width: 875px;
+	height: 510px;
+	float: left;
+	margin: 45px 10px 0px 10px;
+	text-align: justify;
+	padding-right: 10px;
+	font-size: 18px;
+	font-weight: 400px;
+}
+.product-content img{	
+	float: left;
+	width: 500px;
+	margin-right: 10px;
+	cursor: pointer;
+}
+.product-content h1{	
+	float: left;
+	font-size: 32px;
+	font-weight: 700;
+	margin-left: 15%;
+	margin-top: 10px;	
+}
+
+.product-content span{	
+	float: left;
+	font-size: 20px;
+	font-weight: 700;
+	margin-top: 10px;	
+}
+.product-content button{	
+	cursor: pointer;
+	width: 30%;
+	color: #fff;
+	font-weight: 700;
+	text-transform: uppercase;
+	background-color: #111;
+	border-radius: 3px;
+	padding: 1.5% 1%;
+	margin-top: 25px;
+	margin-left:-75px;
+	float: left;	
 }

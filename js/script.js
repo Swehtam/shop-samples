@@ -1,41 +1,40 @@
+// Global variables
+var productList = [];
+var cartList = [];
+var sumCart=0;
+
 ( function ( $ ) {
     "use strict";
-	
-	var productList = [];
-	var cartList = [];
-	var product1 = {id: '12', name: "Maçã", value: 0.50, category: "1", img: "images/no-pic.jpg"};
-	var product2 = {id: '56', name: "Banana", value: 50.00, category: "3", img: "images/no-pic.jpg"};
-	var product3 = {id: '23', name: "Uva", value: 1.50, category: "2", img: "images/no-pic.jpg"};
-	productList.push(product1);
-	productList.push(product2);
-	productList.push(product3);
-	productList.push(product1);
-	productList.push(product2);
-	productList.push(product3);
-	productList.push(product1);
-	productList.push(product2);
-	productList.push(product3);
-	productList.push(product1);
-	productList.push(product3);
-	productList.push(product1);
-	productList.push(product2);
-	productList.push(product3);
-	productList.push(product1);
-	productList.push(product3);
-	productList.push(product1);
-	productList.push(product2);
-	productList.push(product3);
-	productList.push(product1);
-	var sum = 0;
-	
+		
 	$(function() {
 		menuToggles();		
-		addProduct();
-		chooseCategory();		
+		loadJSON();
+		chooseCategory();
+		
 	});
 	
-	
-	
+
+	function loadJSON() {
+		
+		var mydata = JSON.parse(produtos);
+		var html='';
+
+		for (var i=0; i < mydata.length; i++){
+			html = '<div class="product" >' + 
+						'<a id="product' + mydata[i].produtoID + '" onclick="productPage(this.id)" title="' + mydata[i].nomeproduto + '">' +
+							'<img src="' + mydata[i].img + '">' +
+							'<h3>' + mydata[i].nomeproduto + '</h3>' +
+							'<span> R$' + mydata[i].precounitario + '</span>' +
+						'</a><br>' +
+						'<button id="' + mydata[i].produtoID + '" onclick="addCart(this.id)"> Add </button>' +
+					'</div>';
+
+			$('.products-list').append(html);
+			productList.push(mydata[i]);
+		}
+		
+	}	
+
 	function fadeToggles(e){
 
 		$(e.data.child).fadeToggle();
@@ -48,8 +47,9 @@
 		$('#p4').on("click", {child: '#c4'}, fadeToggles);
 		
 		
-	}
+	}	
 	function chooseCategory(){
+		
 		$('#c1 li').on("click", function(){
 			$('.nav-menu').empty().append(
 				'<h1><a href="index.html"> Home </a><i class="fas fa-chevron-right"></i><a href="#"> Category 1 </a> </h1>'); 			
@@ -69,26 +69,6 @@
 			
 	}
 	
-	function addProduct(){
-		loadProduts();
-		$('#12 button').on("click", function(){			
-			cartList.push(product1);
-			appendProductCart(product1);
-			sumProducts(product1.value);
-		});
-		$('#56 button').on("click", function(){			
-			cartList.push(product2);
-			appendProductCart(product2);
-			sumProducts(product2.value);
-		});
-		$('#23 button').on("click", function(){
-			cartList.push(product3);
-			appendProductCart(product3);
-			sumProducts(product1.value);
-		});
-
-		
-	}
 /*
 	function removeProductCart(){
 		loadProduts();
@@ -109,33 +89,45 @@
 		}
 	}
 */
-	function appendProductCart(product){
-		$('.cart-list').append(
-				'<li class="product-cart" id="pc'+ product.id +'">'+ product.name+' - $'+ product.value+'</li>'); 
-
-	}
-	function sumProducts(value){
-		sum += value;
-		document.getElementById('value-cart').innerHTML = "Total = $"+ sum;
-	}
 	
-	function loadProduts(){
-		var html = '';
-		for (var i = 0; i < productList.length; i++){
-			html = '<div class="product" id="' + productList[i].id + '">' + 
-					'<a href="prod.html" title="' + productList[i].name + '">' +
-						'<img src="' + productList[i].img + '">' +
-						'<h3>' + productList[i].name + '</h3>' +
-						'<span> R$' + productList[i].value + '</span>' +
-					'</a><br>' +
-					'<button> Add </button>' +
-				'</div>';
-
-			$('.products-list').append(html);
-		}
-		
-		
-	}
-
 	
 })(jQuery);
+
+function addCart(id){
+	var myProduct = productList[id-1];
+	cartList.push(myProduct);
+	appendProductCart(myProduct);
+	sumProducts(myProduct.precounitario);
+	
+}
+function appendProductCart(product){
+	$('.cart-list').append(
+			'<li class="product-cart" id="pc'+ product.produtoID +'">'+ product.nomeproduto+' - $'+ product.precounitario+'</li>'); 
+
+}
+function sumProducts(value){
+	sumCart += parseInt(value);
+	document.getElementById('value-cart').innerHTML = "Total = $"+ sumCart;
+}
+function productPage(value){
+		
+		//ID
+		var myID = parseInt(value.charAt(value.length-1));
+		//Product
+		var myProduct = productList[myID-1];
+		console.log(myProduct);
+		
+}
+function productPage(value){
+	//ID
+	var myID = parseInt(value.charAt(value.length-1));
+	//Product
+	var myProduct = productList[myID-1];
+	var stringProduct = JSON.stringify(myProduct);
+	var stringCart = JSON.stringify(cartList);
+	
+	sessionStorage.setItem("product", stringProduct);
+	sessionStorage.setItem("cartValue", sumCart);
+	sessionStorage.setItem("cartList", stringCart);
+	window.open('product.html');
+}
