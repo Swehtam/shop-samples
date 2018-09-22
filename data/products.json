@@ -1,0 +1,59 @@
+{
+    "categories": [
+        { "name": "Food" },
+        { "name": "Clothes"}
+    ],
+
+    "products": [
+        {   "id": "1",
+            "name": "Apple",
+            "price":"6.50",
+            "categorie": "Food",
+            "description": "An apple is a sweet, edible fruit produced by an apple tree (Malus pumila). Apple trees are cultivated worldwide, and are the most widely grown species in the genus Malus. The tree originated in Central Asia, where its wild ancestor, Malus sieversii, is still found today. Apples have been grown for thousands of years in Asia and Europe, and were brought to North America by European colonists. Apples have religious and mythological significance in many cultures, including Norse, Greek and European Christian traditions.", 
+            "img": "apple.jpg" },
+        {
+            "id": "2",
+            "name": "Pear",
+            "price":"2.00",
+            "categorie": "Food",
+            "description": "The pear is any of several tree and shrub species of genus Pyrus, in the family Rosaceae. It is also the name of the pomaceous fruit of the various trees. Several species of pear are valued for their edible fruit and juices while others are cultivated as trees.",
+            "img": "pear.jpg" },
+        {
+            "id": "3",
+            "name": "Pineapple",
+            "price":"15.00",
+            "categorie": "Food", 
+            "description": "The pineapple (Ananas comosus) is a tropical plant with an edible multiple fruit consisting of coalesced berries, also called pineapples, and the most economically significant plant in the family Bromeliaceae. Pineapples may be cultivated from the offset produced at the top of the fruit, possibly flowering in five to ten months and fruiting in the following six months. Pineapples do not ripen significantly after harvest.[7] In 2016, Costa Rica, Brazil, and the Philippines accounted for nearly one-third of the world's production of pineapples.",
+            "img": "pineapple.jpg" },
+        {
+            "id": "4",
+            "name": "Watermelon",
+            "price":"30.00",
+            "categorie": "Food", 
+            "description": "Watermelon (Citrullus lanatus) is a scrambling and trailing vine in the flowering plant family Cucurbitaceae. The species was long thought to have originated in southern Africa, but this was based on the erroneous synonymization by L. H. Bailey (1930) of a South African species with the cultivated watermelon.",
+            "img": "watermelon.jpg" },
+        {
+            "id": "5",
+            "name": "Orange",
+            "price":"4.00",
+            "categorie": "Food", 
+            "description": "The orange is the fruit of the citrus species Citrus sinensis in the family Rutaceae. It is also called sweet orange, to distinguish it from the related Citrus × aurantium, referred to as bitter orange. The sweet orange reproduces asexually (apomixis through nucellar embryony); varieties of sweet orange arise through mutations.",
+            "img": "orange.jpg" },
+        {
+            "id": "6",
+            "name": "Checkered shirt",
+            "price":"124.00",
+            "categorie": "Clothes", 
+            "img": "checkered-shirt.jpg" }
+    ]
+}
+
+
+
+
+
+
+
+
+
+    
