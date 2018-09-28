@@ -41,12 +41,12 @@
 	<main class="content-wrapper">
 		<!-- Aside: -->
 		<section class="categories-wrapper">
-			<section class="categories-header"> <h1>TESTE</h1> </section>
+			<section class="categories-header"> <h1>Categories</h1> </section>
 
 			<ul class="categories">	
 				{{#each categories}}			
-				<li> {{this.name}} </li>	
-				{{/each}}								
+				<a href="/categorie/{{this.name}}"><li>{{this.name}}</li></a> 	
+				{{/each}}														
 			</ul>
 								
 			<p> Cart value </p>
@@ -55,17 +55,19 @@
 
 		<article>
 			<nav class="nav-menu">
-				<h1><a href="/"> Home </a></h1>
+				<h1><a href="/">Home</a> > 
+					<a href="/categorie/{{product.categorie}}">{{product.categorie}}</a> >
+					<a href="/product/{{product.name}}">{{product.name}}</a>
+				</h1>
 			</nav>
 
 			<div class="product-content">
 				<img src="/images/{{product.categorie}}/{{product.img}}">
-				<div>
-
+				<div class="product-information">
 					<h1> {{product.name}} </h1>
 					<p> {{product.description}} </p>
 					<span> R$ {{product.price}}</span>
-					<button>BUY</button>
+					<button>ADD</button>
 				</div>
 			</div>
 		</article>

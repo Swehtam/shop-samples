@@ -14,9 +14,6 @@
 	
 	<!-- Fonte - Google fonts (Lato): -->
 	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
-
-	<!-- Browser Icon -->
-	<link rel="icon" href="#">	
 </head>
 
 <body>
@@ -28,12 +25,19 @@
 
 	<nav class="logo-nav">
 		<a href="/"><img src="/images/logoblack.png"></a>
+
 		<div href="#" class="cart"><i class="fas fa-shopping-cart"></i>CART
-			<div class="cart-content">
-				<h3 class="header-cart-content"> My cart </h3>
-				<ul class="cart-list"></ul>
+
+			<form class="cart-content">
+				<h3 class="header-cart-content"> Shopping List </h3>
+				<ul class="cart-list">
+					
+				</ul>
 				<div id="value-cart">Total = $0,00</div>
-			</div>
+				<button type="submit">Checkout</button>
+			</form>
+
+
 		</div>
 	</nav>
 		
@@ -45,30 +49,34 @@
 
 			<ul class="categories">	
 				{{#each categories}}			
-				<li> {{this.name}} </li>	
+				<a href="/categorie/{{this.name}}"><li>{{this.name}}</li></a> 	
 				{{/each}}								
 			</ul>
-								
-			<p> Cart value </p>
-			<p id="value"></p>
+
 		</section>
 
 		<article>
 			<nav class="nav-menu">
-				<h1><a href="/"> Home </a></h1>
+				<h1><a href="/">Home</a> > 
+					<a href="/categorie/{{categorie}}">{{categorie}}</a>
+				</h1>
+
 			</nav>
 
 			<ul class="products-list">
+
 				{{#each products}}
 				<li class="product">
-					<a href="/product/{{this.id}}" title="{{this.productName}}">
+					<a href="/product/{{this.id}}" title="{{this.name}}">
 						<img src="/images/{{this.categorie}}/{{this.img}}">
 						<h3> {{this.name}} </h3>
 						<span> R$ {{this.price}}</span>
+						<input type="hidden" value="{{this.id}}">
 					</a>
-					<button id="{{this.id}}">Add</button>
+					<button>Add</button>
 				</li>
 				{{/each}}
+
 			</ul>
 		</article>
 	</main>

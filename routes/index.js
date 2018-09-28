@@ -11,19 +11,27 @@ router.get('/', (req, res) => {
 	});
 });
 
-router.get('/product/:id', (req, res) => {
-	let product;
+router.get('/categorie/:name', (req, res) => {
+	let products = data.products.filter((item) => {
+		return item.categorie == req.params.name;
+	});
 
-	data.products.forEach((item) => {
-		if(item.id == req.params.id)
-			product = item;
+	res.render('index', {
+		categorie: req.params.name,
+		categories: data.categories,
+		products: products
+	});
+});
+
+router.get('/product/:id', (req, res) => {
+	let product = data.products.filter((item) => {
+		return item.id == req.params.id;
 	});
 
 	res.render('product', {
 		categories: data.categories,
-		product: product
+		product: product[0]
 	});
-	
 });
 
 module.exports = router;
