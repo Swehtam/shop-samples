@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<title> Adm Page </title>
+	<!-- Tags meta importantes para o site -->
+	<!-- width=device-width: largura da minha pagina será igual a largura do dispositivo. initial-scale: Nivel inicial do zoom = 1.-->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+	<meta name="description" content="Empresa voltada para o comércio virtual.">
+	<meta name="keywords" content="Sites, Marketing, e-commerce">
+	<meta name="robots" content="index, follow">
+	<meta name="author" content="Henrique Augusto, Mathews, Rodolffo Teles, Davi Graça">
+	<link rel="stylesheet"  href="css/style.css">
+	<!-- Link para utilizar pacote de ícones aleatórios (Fonts awesome): -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+	<link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<!-- Fonte - Google fonts (Lato): -->
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Merienda:400,700" rel="stylesheet">
+	<script type="text/javascript" src="json/produtos.json"></script>
+	<!-- Browser Icon -->
+	<link rel="icon" href="#">	
+</head>
+<body>
+	<header class="header-info">
+	<!-- Cabeçalho: -->	
+
+		<h3 class="header-message"><i class="fas fa-headset fa-lg"></i>24x7 live support</h3>
+		<h3 class="header-message"><i class="fas fa-truck-moving fa-lg"></i>Free Shipping on order over 500</h3>						
+	</header>
+	<nav class="logo-nav">
+	
+	</nav>
+		
+	<!-- Main and Article: -->
+	<main class="content-wrapper">
+		<div class="content-adm">
+			<div class="new_category">
+				<h2>Create new category</h2><br>
+				<form action="adm/categories/create" method="post"/>
+					<label>Name:</label>
+					<input type="text" name="category_name" required/><br>
+					<input type="submit" value="submit" />
+				</form>
+			</div>
+			<div class="new_product">
+				<h2>Create new product</h2><br>
+				<form action="admin/categories/createproduct" enctype="multipart/form-data", method="post"/>
+					
+					<label>Name:</label>
+					<input type="text" name="product_name" required/><br>
+					
+					<label>Price: $ </label>
+					<input type="text" name="product_price" required/><br>
+					
+					<label>Description:</label><br>
+					<textarea name="product_desc" required></textarea><br>
+					
+					<label>Image:</label>
+					<input type="file" name="thumbnail" required/><br>
+					
+					<select name="product_category">
+							<option value="Food">Food</option>
+							<option value="Clothes">Clothes</option>
+					</select>
+					<input type="submit" value="submit"/>
+				</form>
+			</div>
+
+			<div class="edit_content">
+				<h2>Categories</h2>
+				<ul>
+					<li><p>Food</p></li>
+					<li>
+						<a href="admin/categories/{{this.id}}/destroy"><button>Delete</button></a>
+						<a href="admin/categories/{{this.id}}/edit"><button>Edit</button></a>
+					</li>
+					<li><p>Clothes</p></li>
+					<li>
+						<a href="admin/categories/{{this.id}}/destroy"><button>Delete</button></a>
+						<a href="admin/categories/{{this.id}}/edit"><button>Edit</button></a>
+					</li>
+					<ul>
+						<li>
+							<img src="">
+							<p>Apple</p><br>
+							<p>$6.50</p><br>
+							<p>An apple is a sweet, edible fruit produced by an apple tree (Malus pumila). Apple trees are cultivated worldwide, and are the most widely grown species in the genus Malus. The tree originated in Central Asia, where its wild ancestor, Malus sieversii, is still found today. Apples have been grown for thousands of years in Asia and Europe, and were brought to North America by European colonists. Apples have religious and mythological significance in many cultures, including Norse, Greek and European Christian traditions.</p><br>
+						</li>
+						<li>
+							<a href="admin/categories/{{../this.id}}/products/{{this.id}}/delete"><button>Delete</button></a>
+							<a href="admin/categories/{{../this.id}}/products/{{this.id}}/edit"><button>Edit</button></a>
+						</li>
+						<li>
+							<img src="">
+							<p>Pear</p><br>
+							<p>$2.00</p><br>
+							<p>An apple is a sweet, edible fruit produced by an apple tree (Malus pumila). Apple trees are cultivated worldwide, and are the most widely grown species in the genus Malus. The tree originated in Central Asia, where its wild ancestor, Malus sieversii, is still found today. Apples have been grown for thousands of years in Asia and Europe, and were brought to North America by European colonists. Apples have religious and mythological significance in many cultures, including Norse, Greek and European Christian traditions.</p><br>
+						</li>
+						<li>
+							<a href="admin/categories/{{../this.id}}/products/{{this.id}}/delete"><button>Delete</button></a>
+							<a href="admin/categories/{{../this.id}}/products/{{this.id}}/edit"><button>Edit</button></a>
+						</li>
+					</ul>
+				</ul>
+			</div>
+		</div>
+	</main>
+	<!-- Contacts: -->
+	
+	<footer class="#">
+		
+	</footer>
+	
+	<!-- Events - jQuery: -->
+	<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="js/script.js"></script>
+	<script src="js/handlebars-v4.0.11.js"></script>
+</body>
+</html>
