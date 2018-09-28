@@ -1,8 +1,5 @@
 const express = require('express');
-const fs = require('fs');
 const router = express.Router();
-
-const data = JSON.parse(fs.readFileSync('data/products.json'));
 
 router.get('/', (req, res) => {
 	res.render('index', {

@@ -3,7 +3,6 @@
 
     let shoppingList = [];
 	
-	$('.product-content button').on('click', addToCart);
 	$('.product button').on('click', addToCart);
 	$('.cart button').on('click', checkout)
 

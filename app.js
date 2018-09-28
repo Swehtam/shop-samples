@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const url = require('url');
 const validator = require('express-validator');
 const hbs = require('express-handlebars');
-
+const config = require('./config/default');
 const app = express();
 
 app.set('view engine', 'hbs');
@@ -18,5 +18,6 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(validator());
 
 app.use('/', require('./routes/index'));
+app.use('/admin', require('./routes/admin'));
 
-app.listen(8080);
+app.listen(config.port);
