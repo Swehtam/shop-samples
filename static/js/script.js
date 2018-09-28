@@ -3,7 +3,9 @@
 
     let shoppingList = [];
 	
+	$('.product-content button').on('click', addToCart);
 	$('.product button').on('click', addToCart);
+	$('.cart button').on('click', checkout)
 
 	function addToCart(){
 		let $product = $(this).siblings()
@@ -12,9 +14,7 @@
 		let price = parseFloat($product.children('span').text().replace(/[^\d.]/g,''));
 		let id = $product.children('input').val();
 
-		if(productInCart(id)){
-			return;
-		}
+		if(productInCart(id)){ return; }
 		
 		let product = {
 			name: name,
@@ -90,6 +90,10 @@
 		})
 
 		$('#value-cart').text('Total = $' + total);
+	}
+
+	function checkout(){
+		$.post('/checkout', { shoppingList: shoppingList } );
 	}
 
 })(jQuery);

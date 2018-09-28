@@ -34,4 +34,9 @@ router.get('/product/:id', (req, res) => {
 	});
 });
 
+
+router.post('/checkout', (req, res) => {
+	console.log(req.body.shoppingList);
+});
+
 module.exports = router;

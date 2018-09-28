@@ -1,70 +1,28 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-<head>
-	<title> Xylopia Commerce </title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta charset="utf-8">
-	<meta name="description" content="Company devotate to web commerce">
-	<meta name="keywords" content="Sites, Marketing, e-commerce">
-	<meta name="author" content="Henrique Augusto, Mathews Alves, Rodolffo Teles, Carlos Alberto, Davi Graça">
-	<link rel="stylesheet"  href="/css/style.css">
-
-	<!-- Link para utilizar pacote de ícones aleatórios (Fonts awesome): -->
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
-	
-	<!-- Fonte - Google fonts (Lato): -->
-	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
-</head>
-
+<html lang="en">
+	{{> head }}
 <body>
-	<header class="header-info">
-	<!-- Cabeçalho: -->	
-		<h3 class="header-message"><i class="fas fa-headset fa-lg"></i>24x7 live support</h3>
-		<h3 class="header-message"><i class="fas fa-truck-moving fa-lg"></i>Free Shipping on order over 500</h3>						
-	</header>
+	{{> header }}
+	{{> navbar }}
 
-	<nav class="logo-nav">
-		<a href="/"><img src="/images/logoblack.png"></a>
-
-		<div href="#" class="cart"><i class="fas fa-shopping-cart"></i>CART
-
-			<form class="cart-content">
-				<h3 class="header-cart-content"> Shopping List </h3>
-				<ul class="cart-list">
-					
-				</ul>
-				<div id="value-cart">Total = $0,00</div>
-				<button type="submit">Checkout</button>
-			</form>
-
-
-		</div>
-	</nav>
-		
-	<!-- Main and Article: -->
 	<main class="content-wrapper">
-		<!-- Aside: -->
-		<section class="categories-wrapper">
+		<aside class="categories-wrapper">
 			<section class="categories-header"> <h1>Categories</h1> </section>
-
 			<ul class="categories">	
 				{{#each categories}}			
 				<a href="/categorie/{{this.name}}"><li>{{this.name}}</li></a> 	
 				{{/each}}								
 			</ul>
-
-		</section>
+		</aside>
 
 		<article>
 			<nav class="nav-menu">
 				<h1><a href="/">Home</a> > 
-					<a href="/categorie/{{categorie}}">{{categorie}}</a>
+					<a>{{categorie}}</a>
 				</h1>
-
 			</nav>
 
 			<ul class="products-list">
-
 				{{#each products}}
 				<li class="product">
 					<a href="/product/{{this.id}}" title="{{this.name}}">
@@ -76,12 +34,10 @@
 					<button>Add</button>
 				</li>
 				{{/each}}
-
 			</ul>
 		</article>
 	</main>
 	
-	<!-- Events - jQuery: -->
 	<script type="text/javascript" src="/js/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript" src="/js/script.js"></script>
 </body>
