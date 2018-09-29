@@ -13,7 +13,7 @@ Here're some steps to bootstrap your development using git, node.js, and the ama
 
 Grupo | Matrícula
 --------- | ------
-Carlos Albertp  |  11328177
+Carlos Alberto  |  11328177
 Davi Silva  |  2016005084 
 Henrique Augusto  |  2016004443
 Mathews Alves  |  2016061181
