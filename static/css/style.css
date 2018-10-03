@@ -297,16 +297,30 @@ button {
   margin-top: 10px; 
 }
 
-/*
-.product-content button{  
-  cursor: pointer;
-  width: 150px;
-  color: #fff;
-  font-weight: 700;
-  text-transform: uppercase;
-  background-color: #111;
-  border-radius: 3px;
-  padding: 1.5% 1%;
-  margin: 25px;
+.new_category, .new_product, .edit_content{
+    border: 1px solid;
+    padding: 10px;
+    margin: 10px auto;
+    max-width: 700px;
 }
-*/
+
+.new_category h2, .new_product h2, .edit_content h2 {
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+input[type="text"], input[type="number"] {
+    border-bottom: 1px solid;
+    margin-bottom: 10px;
+}
+
+input[type="file"] {
+  margin-bottom: 10px;
+}
+
+textarea {
+  border: 1px solid;
+  width: 100%;
+  max-width: 675px;
+  margin-bottom: 10px;
+}

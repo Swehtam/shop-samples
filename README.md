@@ -7,7 +7,7 @@ Sample Codes for the IERG4210 Assignment
 
 Grupo | Matrícula
 --------- | ------
-Carlos Albertp  |  11328177
+Carlos Alberto  |  11328177
 Davi Silva  |  2016005084 
 Henrique Augusto  |  2016004443
 Mathews Alves  |  2016061181

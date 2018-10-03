@@ -6,57 +6,49 @@
 	<meta charset="utf-8">
 	<meta name="description" content="Empresa voltada para o comércio virtual.">
 	<meta name="keywords" content="Sites, Marketing, e-commerce">
-	<meta name="robots" content="index, follow">
-	<meta name="author" content="Henrique Augusto, Mathews, Rodolffo Teles, Davi Graça">
-	<!-- <link rel="stylesheet"  href="css/style.css"> -->
+	<meta name="author" content="Henrique Augusto, Mathews Alves, Rodolffo Teles, Carlos Alberto, Davi Graça">
+	<link rel="stylesheet"  href="css/style.css">
 	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
-	<script type="text/javascript" src="json/produtos.json"></script>
 </head>
 <body>	
 	<main class="content-wrapper">
-		<div class="content-adm">
-			<div class="new_category">
-				<h2>Create new category</h2><br>
+			<section class="new_category">
+				<h2>Create new category</h2>
 				<form action="admin/categorie/create" method="post"/>
-					<fieldset>
-						<label>Name:</label>
-						<input type="text" name="name" required/><br>
-						<input type="submit" value="submit">
-					<fieldset>
+					<label>Name:</label>
+					<input type="text" name="name" required/>
+					<button type="submit" value="submit"> Create </button>
 				</form>
-			</div>
+			</section>
 
-			<div class="new_product">
-				<h2>Create new product</h2><br>
+			<section class="new_product">
+				<h2>Create new product</h2>
 
-				<form action="admin/product/create" method="post"/>
-					<fieldset>
-						<label>Name:</label>
-						<input type="text" name="name" required/><br>
-						
-						<label>Price: $</label>
-						<input type="number" name="price" min="0" step="0.01"required/><br>
-						
-						<label>Description: </label><br>
-						<textarea name="description" required></textarea><br>
-						
-						<label>Image:</label>
-						<input type="file" name="thumbnail" required/><br>
-						
-						<label>Categorie:</label>
-						<select name="category">
-								{{#each categories}}
-								<option value="{{this.id}}">{{this.name}}</option>
-								<option value="{{this.id}}">{{this.id}}</option>
-								{{/each}}
-						</select>
+				<form action="admin/product/create" method="post" ectype="multipart/form-data">
+					<label>Name:</label>
+					<input type="text" name="name" required><br>
+					
+					<label>Price: $</label>
+					<input type="number" name="price" min="0" step="0.05" required><br>
+					
+					<label>Description: </label><br>
+					<textarea name="description" required></textarea><br>
+					
+					<label>Image:</label>
+					<input type="file" name="img" required><br>
+					
+					<label>Categorie:</label>
+					<select name="category">
+							{{#each categories}}
+							    <option value="{{this.catid}}">{{this.name}}</option>
+							{{/each}}
+					</select>
 
-						<input type="submit" value="submit"/>
-					<fieldset>
+					<button type="submit"> Create </button> 
 				</form>
-			</div>
+			</section>
 
-			<div class="edit_content">
+			<section class="edit_content">
 				<h2>Categories</h2>
 				<ul>
 					<li><p>Food</p></li>
@@ -92,8 +84,7 @@
 						</li>
 					</ul>
 				</ul>
-			</div>
-		</div>
+			</section>
 	</main>
 	
 	<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>

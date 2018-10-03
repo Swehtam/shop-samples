@@ -37,16 +37,18 @@
 	<!-- Main and Article: -->
 	<main class="content-wrapper">
 		<div class="content-adm">
+
 			<div class="new_category">
 				<h2>Create new category</h2><br>
-				<form action="adm/categories/create" method="post"/>
+				<form action="adm/categorie/create" method="post"/>
 					<fieldset>
 						<label>Name:</label>
-						<input type="text" name="category_name" required/><br>
+						<input type="text" name="name" required/><br>
 						<input type="submit" value="submit" />
 					<fieldset>
 				</form>
 			</div>
+
 			<div class="new_product">
 				<h2>Create new product</h2><br>
 
@@ -64,6 +66,7 @@
 						<label>Image:</label>
 						<input type="file" name="thumbnail" required/><br>
 						
+						<label>Categorie:</label>
 						<select name="category">
 								<option value="Food">Food</option>
 								<option value="Clothes">Clothes</option>
