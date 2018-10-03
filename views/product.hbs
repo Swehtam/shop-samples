@@ -11,7 +11,7 @@
 			<section class="categories-header"> <h1>Categories</h1> </section>
 			<ul class="categories">	
 				{{#each categories}}			
-				<a href="/categorie/{{this.name}}"><li>{{this.name}}</li></a> 	
+				<a href="/category/{{this.catId}}"><li>{{this.catName}}</li></a> 	
 				{{/each}}														
 			</ul>
 		</section>
@@ -19,15 +19,15 @@
 		<article>
 			<nav class="nav-menu">
 				<h1><a href="/">Home</a> > 
-					<a href="/categorie/{{product.categorie}}">{{product.categorie}}</a> >
-					<a>{{product.name}}</a>
+					<a href="/category/{{product.catId}}">{{product.catName}}</a> >
+					{{product.prodName}}
 				</h1>
 			</nav>
 
 			<div class="product-content">
-				<img src="/images/{{product.categorie}}/{{product.img}}">
+				<img src="/images/{{category}}/{{product.img}}">
 				<div class="product-information">
-					<h1> {{product.name}} </h1>
+					<h1> {{product.prodName}} </h1>
 					<p> {{product.description}} </p>
 					<span> R$ {{product.price}}</span>
 					<button>ADD</button>

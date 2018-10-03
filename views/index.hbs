@@ -10,24 +10,26 @@
 			<section class="categories-header"> <h1>Categories</h1> </section>
 			<ul class="categories">	
 				{{#each categories}}			
-				<a href="/categorie/{{this.name}}"><li>{{this.name}}</li></a> 	
+				<a href="/category/{{this.catId}}"><li>{{this.catName}}</li></a> 	
 				{{/each}}								
 			</ul>
 		</aside>
 
 		<article>
 			<nav class="nav-menu">
-				<h1><a href="/">Home</a> > 
-					<a>{{categorie}}</a>
+				<h1><a href="/">Home</a> 
+					{{#if category}}
+					    > {{category}}
+					{{/if}}	
 				</h1>
 			</nav>
 
 			<ul class="products-list">
 				{{#each products}}
 				<li class="product">
-					<a href="/product/{{this.id}}" title="{{this.name}}">
-						<img src="/images/{{this.categorie}}/{{this.img}}">
-						<h3> {{this.name}} </h3>
+					<a href="/product/{{this.prodId}}" title="{{this.name}}">
+						<img src="/images/{{this.catId}}/{{this.img}}">
+						<h3> {{this.prodName}} </h3>
 						<span> R$ {{this.price}}</span>
 						<input type="hidden" value="{{this.id}}">
 					</a>

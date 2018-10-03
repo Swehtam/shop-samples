@@ -1,34 +1,41 @@
 const express = require('express');
+const crud = require('../lib/crud');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-	res.render('index', {
-		categories: data.categories,
-		products: data.products
-	});
+	crud.getAllCategories().then((categories) => {
+		crud.getAllProducts().then((products) => {
+			res.render('index', {
+				categories: categories,
+				products: products
+			})
+		})
+	})
 });
 
-router.get('/categorie/:name', (req, res) => {
-	let products = data.products.filter((item) => {
-		return item.categorie == req.params.name;
-	});
-
-	res.render('index', {
-		categorie: req.params.name,
-		categories: data.categories,
-		products: products
+router.get('/category/:id', (req, res) => {
+	crud.getAllCategories().then((categories) => {
+		crud.getCategoryById(req.params.id).then((category) => {
+			crud.getProductsByCategory(req.params.id).then((products) => {
+				res.render('index', {
+					category: category[0].catName,
+					categories: categories,
+					products: products
+				})
+			})
+		})
 	});
 });
 
 router.get('/product/:id', (req, res) => {
-	let product = data.products.filter((item) => {
-		return item.id == req.params.id;
-	});
-
-	res.render('product', {
-		categories: data.categories,
-		product: product[0]
-	});
+	crud.getAllCategories().then((categories) => {
+		crud.getProductById(req.params.id).then((product) => {
+			res.render('product', {
+				categories: categories,
+				product: product[0]
+			})
+		})
+	})
 });
 
 
