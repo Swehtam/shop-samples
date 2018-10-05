@@ -1,93 +1,95 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-	<title> Adm Page </title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta charset="utf-8">
-	<meta name="description" content="Empresa voltada para o comércio virtual.">
-	<meta name="keywords" content="Sites, Marketing, e-commerce">
-	<meta name="author" content="Henrique Augusto, Mathews Alves, Rodolffo Teles, Carlos Alberto, Davi Graça">
-	<link rel="stylesheet"  href="css/style.css">
-	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
-</head>
-<body>	
-	<main class="content-wrapper">
-			<section class="new_category">
-				<h2>Create new category</h2>
-				<form action="admin/category/create" method="post"/>
-					<label>Name:</label>
-					<input type="text" name="name" required/>
-					<button type="submit" value="submit"> Create </button>
-				</form>
-			</section>
+	<head>
+		<title> Adm Page </title>
+		{{> meta }}
+	</head>
+	<body>	
+		<main class="content-wrapper">
+				<section class="new_category">
+					<h2>Create new category</h2>
+					<form action="admin/category" method="post"/>
+						<label>Name:</label>
+						<input type="text" name="name" required/>
+						<button type="submit" value="submit"> Create </button>
+					</form>
+				</section>
 
-			<section class="new_product">
-				<h2>Create new product</h2>
+				<section class="new_product">
+					<h2>Create new product</h2>
 
-				<form action="admin/product/create" method="post" ectype="multipart/form-data">
-					<label>Name:</label>
-					<input type="text" name="name" required><br>
-					
-					<label>Price: $</label>
-					<input type="number" name="price" min="0" step="0.05" required><br>
-					
-					<label>Description: </label><br>
-					<textarea name="description" required></textarea><br>
-					
-					<label>Image:</label>
-					<input type="file" name="img" required><br>
-					
-					<label>Categorie:</label>
-					<select name="category">
-							{{#each categories}}
-							    <option value="{{this.catid}}">{{this.name}}</option>
-							{{/each}}
-					</select>
+					<form action="admin/product" method="post" ectype="multipart/form-data">
+						<label>Name:</label>
+						<input type="text" name="name" required><br>
+						
+						<label>Price: $</label>
+						<input type="number" name="price" min="0" step="0.05" required><br>
+						
+						<label>Description: </label><br>
+						<textarea name="description" required></textarea><br>
+						
+						<label>Image:</label>
+						<input type="file" name="img" required><br>
+						
+						<label>Category:</label>
+						<select name="category">
+								{{#each categories}}
+								    <option value="{{this.catId}}">{{this.catName}}</option>
+								{{/each}}
+						</select>
 
-					<button type="submit"> Create </button> 
-				</form>
-			</section>
+						<button type="submit"> Create </button> 
+					</form>
+				</section>
 
-			<section class="edit_content">
-				<h2>Categories</h2>
-				<ul>
-					<li><p>Food</p></li>
-					<li>
-						<a href="admin/categories/{{this.id}}/destroy"><button>Delete</button></a>
-						<a href="admin/categories/{{this.id}}/edit"><button>Edit</button></a>
-					</li>
-					<li><p>Clothes</p></li>
-					<li>
-						<a href="admin/categories/{{this.id}}/destroy"><button>Delete</button></a>
-						<a href="admin/categories/{{this.id}}/edit"><button>Edit</button></a>
-					</li>
-					<ul>
-						<li>
-							<img src="">
-							<p>Apple</p><br>
-							<p>$6.50</p><br>
-							<p>An apple is a sweet, edible fruit produced by an apple tree (Malus pumila). Apple trees are cultivated worldwide, and are the most widely grown species in the genus Malus. The tree originated in Central Asia, where its wild ancestor, Malus sieversii, is still found today. Apples have been grown for thousands of years in Asia and Europe, and were brought to North America by European colonists. Apples have religious and mythological significance in many cultures, including Norse, Greek and European Christian traditions.</p><br>
-						</li>
-						<li>
-							<a href="admin/categories/{{../this.id}}/products/{{this.id}}/delete"><button>Delete</button></a>
-							<a href="admin/categories/{{../this.id}}/products/{{this.id}}/edit"><button>Edit</button></a>
-						</li>
-						<li>
-							<img src="">
-							<p>Pear</p><br>
-							<p>$2.00</p><br>
-							<p>An apple is a sweet, edible fruit produced by an apple tree (Malus pumila). Apple trees are cultivated worldwide, and are the most widely grown species in the genus Malus. The tree originated in Central Asia, where its wild ancestor, Malus sieversii, is still found today. Apples have been grown for thousands of years in Asia and Europe, and were brought to North America by European colonists. Apples have religious and mythological significance in many cultures, including Norse, Greek and European Christian traditions.</p><br>
-						</li>
-						<li>
-							<a href="admin/categories/{{../this.id}}/products/{{this.id}}/delete"><button>Delete</button></a>
-							<a href="admin/categories/{{../this.id}}/products/{{this.id}}/edit"><button>Edit</button></a>
-						</li>
-					</ul>
-				</ul>
-			</section>
-	</main>
-	
-	<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
-	<script type="text/javascript" src="js/script.js"></script>
-</body>
+				<section class="edit_content">
+					<h2>Delete categories</h2>
+
+					<table>
+						<tr>
+						    <th>Name</th>
+						    <th></th>
+						</tr>
+						{{#each categories}}
+						<form action="admin/category/{{this.catId}}" method="delete">
+							<tr>
+						    	<td>{{this.catName}}</td>
+						    	<td><button type="submit">Delete</button></td>
+							</tr>
+						</form>
+						{{/each}}
+					</table>
+				</section>
+
+				<section class="edit_content">
+					<h2>Delete products</h2>
+
+					<table>
+						<tr>
+						    <th>Name</th>
+						    <th>Price</th> 
+						    <th>Description</th>
+						    <th>Image</th>
+						    <th>Category</th>
+						    <th></th>
+						</tr>
+						{{#each products}}
+						<form action="admin/product/{{this.catId}}" method="delete">
+							<tr>
+							    <td>{{this.prodName}}</td>
+							    <td>$ {{this.price}}</td>
+							    <td>{{this.description}}</td>
+							    <th>{{this.img}}</th>
+							    <th>{{this.catName}}</th> 
+							    <td><button type="submit">Delete</button></td>
+							</tr>
+						</form>
+						{{/each}}
+					</table>
+				</section>
+		</main>
+		
+		<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="js/script.js"></script>
+	</body>
 </html>

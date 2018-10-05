@@ -13,10 +13,10 @@ router.get('/', (req, res) => {
 	})
 });
 
-router.get('/category/:id', (req, res) => {
+router.get('/category/:catid', (req, res) => {
 	crud.getAllCategories().then((categories) => {
 		crud.getCategoryById(req.params.id).then((category) => {
-			crud.getProductsByCategory(req.params.id).then((products) => {
+			crud.getProductsByCategory(req.params.catid).then((products) => {
 				res.render('index', {
 					category: category[0].catName,
 					categories: categories,
@@ -27,9 +27,9 @@ router.get('/category/:id', (req, res) => {
 	});
 });
 
-router.get('/product/:id', (req, res) => {
+router.get('/product/:prodid', (req, res) => {
 	crud.getAllCategories().then((categories) => {
-		crud.getProductById(req.params.id).then((product) => {
+		crud.getProductById(req.params.prodid).then((product) => {
 			res.render('product', {
 				categories: categories,
 				product: product[0]
@@ -37,7 +37,6 @@ router.get('/product/:id', (req, res) => {
 		})
 	})
 });
-
 
 router.post('/checkout', (req, res) => {
 	console.log(req.body.shoppingList);

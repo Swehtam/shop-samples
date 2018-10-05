@@ -319,3 +319,21 @@ textarea {
   max-width: 675px;
   margin-bottom: 10px;
 }
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+}
+
+tr {
+  border-bottom: 1px solid #000;
+}
+
+tr:last-child {
+  border-bottom: none;
+}
