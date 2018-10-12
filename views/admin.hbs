@@ -1,24 +1,22 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-	<head>
-		<title> Adm Page </title>
-		{{> meta }}
-	</head>
+	{{>head title='Admin Shop00' style='admin'}}
 	<body>	
 		<main class="content-wrapper">
-				<section class="new_category">
+				<section class="crud_section">
 					<h2>Create new category</h2>
-					<form action="admin/category" method="post"/>
+
+					<form action="admin/category/create" method="post"/>
 						<label>Name:</label>
 						<input type="text" name="name" required/>
 						<button type="submit" value="submit"> Create </button>
 					</form>
 				</section>
 
-				<section class="new_product">
+				<section class="crud_section">
 					<h2>Create new product</h2>
 
-					<form action="admin/product" method="post" ectype="multipart/form-data">
+					<form action="admin/product/create" method="post" enctype="multipart/form-data">
 						<label>Name:</label>
 						<input type="text" name="name" required><br>
 						
@@ -37,12 +35,10 @@
 								    <option value="{{this.catId}}">{{this.catName}}</option>
 								{{/each}}
 						</select>
-
-						<button type="submit"> Create </button> 
 					</form>
 				</section>
 
-				<section class="edit_content">
+				<section class="crud_section">
 					<h2>Delete categories</h2>
 
 					<table>
@@ -51,17 +47,19 @@
 						    <th></th>
 						</tr>
 						{{#each categories}}
-						<form action="admin/category/{{this.catId}}" method="delete">
-							<tr>
-						    	<td>{{this.catName}}</td>
-						    	<td><button type="submit">Delete</button></td>
-							</tr>
-						</form>
+						<tr>
+					    	<td>{{this.catName}}</td>
+					    	<td>
+					    		<form action="admin/category/delete/{{this.catId}}" method="delete">
+					    			<button type="submit">Delete</button>
+					    		</form>
+					    	</td>
+						</tr>					
 						{{/each}}
 					</table>
 				</section>
 
-				<section class="edit_content">
+				<section class="crud_section">
 					<h2>Delete products</h2>
 
 					<table>
@@ -74,13 +72,13 @@
 						    <th></th>
 						</tr>
 						{{#each products}}
-						<form action="admin/product/{{this.catId}}" method="delete">
+						<form action="admin/product/delete/{{this.prodId}}" method="delete">
 							<tr>
 							    <td>{{this.prodName}}</td>
 							    <td>$ {{this.price}}</td>
 							    <td>{{this.description}}</td>
 							    <th>{{this.img}}</th>
-							    <th>{{this.catName}}</th> 
+							    <th>{{this.category.catName}}</th> 
 							    <td><button type="submit">Delete</button></td>
 							</tr>
 						</form>

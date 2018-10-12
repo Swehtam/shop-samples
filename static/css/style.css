@@ -1,4 +1,3 @@
-/* RESET - Tornando acessível a mais navegdores. */
 * {
   margin: 0; 
   padding: 0; 
@@ -23,12 +22,12 @@ a {
   text-decoration: none;
 }
 
-.container{
+.container {
   width: 100%; float: left;
 }
-/* Header */
 
-.header-info{
+/* Header */
+.header-info {
   width: 100%;
   min-height: 45px;
   background-color: #f97e77;
@@ -212,19 +211,6 @@ button {
   font-size: 13px;  
 }
 
-/*
-.product button {
-  width: 70%;
-  color: #fff;
-  font-weight: 700;
-  text-transform: uppercase;
-  background-color: #111;
-  border-radius: 3px;
-  padding: 3% 3%;
-  margin: 5px 0px;
-}
-*/
-
 /* Nav-menu */
 .nav-menu{
   margin-top: 40px;
@@ -292,48 +278,3 @@ button {
   margin-top: 10px; 
 }
 
-.new_category, .new_product, .edit_content{
-    border: 1px solid;
-    padding: 10px;
-    margin: 10px auto;
-    max-width: 700px;
-}
-
-.new_category h2, .new_product h2, .edit_content h2 {
-    font-size: 25px;
-    margin-bottom: 20px;
-}
-
-input[type="text"], input[type="number"] {
-    border-bottom: 1px solid;
-    margin-bottom: 10px;
-}
-
-input[type="file"] {
-  margin-bottom: 10px;
-}
-
-textarea {
-  border: 1px solid;
-  width: 100%;
-  max-width: 675px;
-  margin-bottom: 10px;
-}
-
-table {
-    border-collapse: collapse;
-    width: 100%;
-}
-
-th, td {
-    padding: 8px;
-    text-align: left;
-}
-
-tr {
-  border-bottom: 1px solid #000;
-}
-
-tr:last-child {
-  border-bottom: none;
-}

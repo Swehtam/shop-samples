@@ -1,60 +1,84 @@
 const express = require('express');
-const crud = require('../lib/crud');
+const { category, product } = require('../models');
 const router = express.Router();
 
 var multer  = require('multer')
-var upload = multer({ dest: './static/images/' })
+var upload = multer({ dest: './static/images/teste/' })
 
 router.get('/', async (req, res) => {
-	let categories = await crud.getAllCategories();
-	let products = await crud.getAllProducts();
+	let categories = await category.findAll();
+	let products = await product.findAll({
+		include: [{
+			model: category,
+			attributes: ['catName']
+		}]
+	});
 
 	res.render('admin', {
 		categories: categories,
 		products: products
+	});
+})
+
+router.post('/category/create', async (req, res) => {
+	await category.create({
+		catName: req.body.name
+	});
+
+	res.redirect('/admin');
+});
+
+router.put('/category/update', async (req, res) => {
+	await category.update(
+		{ catName: req.body.name },
+		{ where: { catId: req.body.id } }
+  	);
+
+	res.redirect('/admin');
+});
+
+router.get('/category/delete/:catid', async (req, res) => {
+	await category.destroy({
+		where: {catId: req.params.catid}
+	});
+
+	res.redirect('/admin');
+});
+
+router.post('/product/create', upload.single('img'), async (req, res) => {
+	console.log(`BODY:`);
+	console.log(req.body);
+	console.log(`FILE:`);
+	console.log(req.body);
+
+	await product.create({
+		prodName: req.body.name,
+       	price: req.body.price,
+       	description: req.body.description,
+        img: req.body.img,
+        catId: req.body.category
 	})
-})
+	
+	res.redirect('/admin');
+});
 
-router.post('/category', (req, res) => {
-	crud.createCategory(req.body.name)
-	res.redirect('/');
-})
+router.put('/product/update', async (req, res) => {
+	await product.update({
+		prodName: req.body.name,
+       	price: req.body.price,
+       	description: req.body.description,
+        img: req.body.img,
+        catId: req.body.category },
+		{ where: req.body.id }
+  	);
 
-router.put('/category', (req, res) => {
-	crud.updateCategory(req.body.id, req.body.name);
-	res.redirect('/');
-})
+	res.redirect('/admin');
+});
 
-router.delete('/category/:id', (req, res) => {
-	crud.deleteCategory(req.params.id);
-	res.redirect('/');
-})
-
-router.post('/product', upload.single('img'), (req, res) => {
-	res.redirect('/admin')
-
-	crud.createProduct(
-		req.body.name, req.body.price,
-		req.body.description, req.body.img,
-		req.body.category
-		)
-	res.redirect('/');
-})
-
-router.put('/product', (req, res) => {
-	crud.updateProduct(
-		req.body.id, req.body.name, 
-		req.body.price, req.body.description, 
-		req.body.img, req.body.categorie
-		)
-	res.redirect('/');
-})
-
-router.delete('/product/:id', (req, res) => {
-	crud.deleteProduct(req.params.id);
-	res.redirect('/');
-})
-
-
+router.delete('/product/delete/:id', async (req, res) => {
+	await product.destroy({
+		where: {prodId: req.params.id}
+	});
+});
 
 module.exports = router;

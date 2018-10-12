@@ -1,0 +1,71 @@
+* {
+  margin: 0; 
+  padding: 0; 
+  font-size: 100%;  
+  font-family: 'Lato', 
+  sans-serif; 
+  font-weight: 300; 
+  box-sizing: border-box; 
+  border: none; 
+  outline: none;
+}
+
+button {
+  display: block;
+  cursor: pointer;
+  width: 70%;
+  max-width: 150px;
+  color: #fff;
+  font-weight: 700;
+  text-transform: uppercase;
+  background-color: #111;
+  border-radius: 3px;
+  padding: 3px 2px;
+  margin: 3px auto;
+}
+
+.crud_section {
+    border: 1px solid;
+    padding: 10px;
+    margin: 10px auto;
+    max-width: 700px;
+}
+
+.crud_section h2 {
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+.crud_section input[type="text"], input[type="number"] {
+    border-bottom: 1px solid;
+    margin-bottom: 10px;
+}
+
+.crud_section input[type="file"] {
+  margin-bottom: 10px;
+}
+
+.crud_section textarea {
+  border: 1px solid;
+  width: 100%;
+  max-width: 675px;
+  margin-bottom: 10px;
+}
+
+.crud_section table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.crud_section th, .crud_section td {
+    padding: 8px;
+    text-align: left;
+}
+
+.crud_section tr {
+  border-bottom: 1px solid #000;
+}
+
+.crud_section tr:last-child {
+  border-bottom: none;
+}

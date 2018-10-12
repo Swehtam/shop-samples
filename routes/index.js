@@ -1,40 +1,48 @@
 const express = require('express');
-const crud = require('../lib/crud');
+const { category, product } = require('../models');
 const router = express.Router();
 
-router.get('/', (req, res) => {
-	crud.getAllCategories().then((categories) => {
-		crud.getAllProducts().then((products) => {
-			res.render('index', {
-				categories: categories,
-				products: products
-			})
-		})
+router.get('/', async (req, res) => {
+	let categories = await category.findAll();
+	let products = await product.findAll({
+		include: [{
+			model: category,
+			attributes: ['catName']
+		}]
+	});
+
+	res.render('index', {
+		categories: categories,
+		products: products
 	})
 });
 
-router.get('/category/:catid', (req, res) => {
-	crud.getAllCategories().then((categories) => {
-		crud.getCategoryById(req.params.id).then((category) => {
-			crud.getProductsByCategory(req.params.catid).then((products) => {
-				res.render('index', {
-					category: category[0].catName,
-					categories: categories,
-					products: products
-				})
-			})
-		})
-	});
+router.get('/category/:catid', async (req, res) => {
+	let categories = await category.findAll();
+	let category = await category.findById(req.params.catid);
+	let products = await product.getAll({ where: {catId: req.params.catid} });
+
+	res.render('index', {
+		category: category[0].catName,
+		categories: categories,
+		products: products
+	})
 });
 
-router.get('/product/:prodid', (req, res) => {
-	crud.getAllCategories().then((categories) => {
-		crud.getProductById(req.params.prodid).then((product) => {
-			res.render('product', {
-				categories: categories,
-				product: product[0]
-			})
-		})
+router.get('/product/:prodid', async (req, res) => {
+	let categories = await category.findAll();
+	let prod = await product.findById(req.params.prodid, {
+		include: [{
+			model: category,
+			attributes: ['catName']
+		}]
+	});
+
+	console.log(prod);
+
+	res.render('product', {
+		categories: categories,
+		product: prod
 	})
 });
 

@@ -1,12 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<title> Xylopia Commerce </title>
-		{{> meta }}
-	</head>
+	{{>head title='Shop00' style='style'}}
 <body>
 	{{> header }}
-
 	{{> navbar }}
 		
 	<main class="content-wrapper">
@@ -22,8 +18,8 @@
 		<article>
 			<nav class="nav-menu">
 				<h1><a href="/">Home</a> > 
-					<a href="/category/{{product.catId}}">{{product.catName}}</a> >
-					{{product.prodName}}
+					<a href="/category/{{product.catId}}">{{product.category.catName}}</a> >
+					{{product.category.prodName}}
 				</h1>
 			</nav>
 
@@ -39,7 +35,6 @@
 		</article>
 	</main>
 	
-	<!-- Events - jQuery: -->
 	<script type="text/javascript" src="/js/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript" src="/js/script.js"></script>
 </body>

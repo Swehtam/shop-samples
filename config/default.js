@@ -3,8 +3,9 @@ const config = {
   database: {
     DATABASE: 'wep_samples',
     USERNAME: 'root',
-    PASSWORD: 'mysql123MYSQL',
-    HOST: 'localhost'
+    PASSWORD: '123456',
+    HOST: 'localhost',
+    DIALECT: 'mysql'
   }
 };
 
