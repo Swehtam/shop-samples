@@ -19,11 +19,11 @@ router.get('/', async (req, res) => {
 
 router.get('/category/:catid', async (req, res) => {
 	let categories = await category.findAll();
-	let category = await category.findById(req.params.catid);
-	let products = await product.getAll({ where: {catId: req.params.catid} });
+	let cat = await category.findById(req.params.catid);
+	let products = await product.findAll({ where: {catId: req.params.catid} });
 
 	res.render('index', {
-		category: category[0].catName,
+		category: cat.catName,
 		categories: categories,
 		products: products
 	})
@@ -37,8 +37,6 @@ router.get('/product/:prodid', async (req, res) => {
 			attributes: ['catName']
 		}]
 	});
-
-	console.log(prod);
 
 	res.render('product', {
 		categories: categories,

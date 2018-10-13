@@ -2,8 +2,16 @@ const express = require('express');
 const { category, product } = require('../models');
 const router = express.Router();
 
-var multer  = require('multer')
-var upload = multer({ dest: './static/images/teste/' })
+const multer  = require('multer');
+const storage = multer.diskStorage({
+	destination: function (req, file, callback) {
+		callback(null, './static/images/');
+	},
+	filename: function (req, file, callback) {
+		callback(null, file.originalname);
+  }
+});
+const upload = multer({ storage: storage });
 
 router.get('/', async (req, res) => {
 	let categories = await category.findAll();
@@ -46,11 +54,6 @@ router.get('/category/delete/:catid', async (req, res) => {
 });
 
 router.post('/product/create', upload.single('img'), async (req, res) => {
-	console.log(`BODY:`);
-	console.log(req.body);
-	console.log(`FILE:`);
-	console.log(req.body);
-
 	await product.create({
 		prodName: req.body.name,
        	price: req.body.price,

@@ -3,7 +3,6 @@ const bodyParser = require('body-parser');
 const url = require('url');
 const validator = require('express-validator');
 const session = require('express-session');
-const fileUpload = require('express-fileupload');
 const hbs = require('express-handlebars');
 const config = require('./config/default');
 
@@ -24,7 +23,6 @@ app.use(session({
   saveUninitialized: false,
 }));
 app.use(validator());
-app.use(fileUpload());
 
 app.use('/', require('./routes/index'));
 app.use('/admin', require('./routes/admin'));

@@ -10,6 +10,7 @@ const sequelize = new Sequelize(
       host: config.database.HOST,
       dialect: config.database.DIALECT, 
       operatorsAliases: false,
+      logging: false,
       pool: {
          max: 5,
          min: 0,
@@ -43,7 +44,7 @@ sequelize.sync({ force: false })
                catId: 1
          }]);
       });*/
-      
+
       console.log('database and tables created...')
    })
 
