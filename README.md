@@ -1,11 +1,9 @@
 # shop-samples
 Sample Codes for the IERG4210 Assignment
 
- Grupo
---------
+## Grupo
 
-
-Grupo | Matrícula
+Aluno | Matrícula
 --------- | ------
 Carlos Alberto  |  11328177
 Davi Silva  |  2016005084 

@@ -1,46 +1,55 @@
 const express = require('express');
-const { category, product } = require('../models');
+const { category, product, user } = require('../models');
 const router = express.Router();
 
 router.get('/', async (req, res) => {
-	let categories = await category.findAll();
-	let products = await product.findAll({
+	let cats = category.findAll();
+	let prod = product.findAll({
 		include: [{
 			model: category,
 			attributes: ['catName']
 		}]
 	});
 
+	let result = await Promise.all([cats, prod])
+
 	res.render('index', {
-		categories: categories,
-		products: products
+		categories: result[0],
+		products: result[1],
+		token: req.csrfToken()
 	})
 });
 
 router.get('/category/:catid', async (req, res) => {
-	let categories = await category.findAll();
-	let cat = await category.findById(req.params.catid);
-	let products = await product.findAll({ where: {catId: req.params.catid} });
+	let cats = category.findAll();
+	let cat = category.findById(req.params.catid);
+	let prod = product.findAll({ where: {catId: req.params.catid} });
+
+	let result = await Promise.all([cats, cat, prod]);
 
 	res.render('index', {
-		category: cat.catName,
-		categories: categories,
-		products: products
+		categories: result[0],
+		category: result[1].catName,
+		products: result[2],
+		token: req.csrfToken()
 	})
 });
 
 router.get('/product/:prodid', async (req, res) => {
-	let categories = await category.findAll();
-	let prod = await product.findById(req.params.prodid, {
+	let cats = category.findAll();
+	let prod = product.findById(req.params.prodid, {
 		include: [{
 			model: category,
 			attributes: ['catName']
 		}]
 	});
 
+	let result = await Promise.all([cats, prod]);
+
 	res.render('product', {
-		categories: categories,
-		product: prod
+		categories: result[0],
+		product: result[1],
+		token: req.csrfToken()
 	})
 });
 

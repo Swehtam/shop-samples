@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-	{{>head title='Login' style='login'}}
+	{{>head title='Login' style='account'}}
 </head>
 <body>
 	{{> header }}
@@ -10,17 +10,20 @@
             <h1>Welcome to <span>Shop00</span></h1>
             <p>Please enter your details</p>
 
-            <form action="" method="post">
+            <form action="/login" method="post">
+              <input type="hidden" name="_csrf" value="{{ token }}"></input>
               <div class="form-group">
-                <label for="email">Email address:</label>
-                <input type="email" id="email" required >
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required >
               </div>
               <div class="form-group">
                 <label for="pwd">Password:</label>
-                <input type="password" id="pwd" required>
+                <input type="password" id="pwd" name="password" required>
               </div>
                <button type="submit">Log in</button>
             </form>
+
+            <a href="/account/signup">Sign up</a>
         </div>
 	</main>
 </body>

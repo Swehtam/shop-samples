@@ -1,11 +1,11 @@
 const express = require('express');
-const { category, product } = require('../models');
+const { category, product, user } = require('../models');
 const router = express.Router();
 
 const multer  = require('multer');
 const storage = multer.diskStorage({
 	destination: function (req, file, callback) {
-		callback(null, './static/images/');
+		callback(null, './static/images/products/');
 	},
 	filename: function (req, file, callback) {
 		callback(null, file.originalname);
@@ -14,17 +14,20 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 router.get('/', async (req, res) => {
-	let categories = await category.findAll();
-	let products = await product.findAll({
+	let cats = category.findAll();
+	let prod = product.findAll({
 		include: [{
 			model: category,
 			attributes: ['catName']
 		}]
 	});
 
+	let result = await Promise.all([cats, prod])
+
 	res.render('admin', {
-		categories: categories,
-		products: products
+		categories: result[0],
+		products: result[1],
+		token: req.csrfToken()
 	});
 })
 
@@ -82,6 +85,8 @@ router.delete('/product/delete/:id', async (req, res) => {
 	await product.destroy({
 		where: {prodId: req.params.id}
 	});
+
+	res.redirect('/admin');
 });
 
 module.exports = router;

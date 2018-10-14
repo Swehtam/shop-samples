@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	{{>head title='Sign up' style='account'}}
+</head>
+
+<body>
+	{{> header }}
+	<main class="content-wrapper">
+        <div class="login-pannel">
+          <p>Please enter your details</p>
+
+          <form action="/account/signup" method="post">
+                <input type="hidden" name="_csrf" value="{{ token }}"></input>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required >
+                </div>
+                <div class="form-group">
+                    <label for="pwd">Password:</label>
+                    <input type="password" id="pwd" name="password" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="admin">Admin:</label>
+                    <input type="checkbox" id="admin" name="authorization" value="true">
+                </div>
+
+                <button type="submit">Sign in</button>
+            </form>
+
+            <a href="/account/login">Log in</a>
+        </div>
+    </main>
+</body>
+
+</html>

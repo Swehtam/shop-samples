@@ -9,6 +9,7 @@
 					<form action="admin/category/create" method="post"/>
 						<label>Name:</label>
 						<input type="text" name="name" required/>
+						<input type="hidden" name="_csrf" value="{{ token }}"></input>
 						<button type="submit" value="submit"> Create </button>
 					</form>
 				</section>
@@ -35,6 +36,7 @@
 								    <option value="{{this.catId}}">{{this.catName}}</option>
 								{{/each}}
 						</select>
+						<input type="hidden" name="_csrf" value="{{ token }}"></input>
 
 						<button type="submit">Create</button>
 					</form>
@@ -53,6 +55,7 @@
 					    	<td>{{this.catName}}</td>
 					    	<td>
 					    		<form action="admin/category/delete/{{this.catId}}" method="delete">
+					    			<input type="hidden" name="_csrf" value="{{ token }}"></input>
 					    			<button type="submit">Delete</button>
 					    		</form>
 					    	</td>
@@ -74,16 +77,20 @@
 						    <th></th>
 						</tr>
 						{{#each products}}
-						<form action="admin/product/delete/{{this.prodId}}" method="delete">
+						
 							<tr>
 							    <td>{{this.prodName}}</td>
 							    <td>$ {{this.price}}</td>
 							    <td>{{this.description}}</td>
-							    <th>{{this.img}}</th>
-							    <th>{{this.category.catName}}</th> 
-							    <td><button type="submit">Delete</button></td>
+							    <td>{{this.img}}</td>
+							    <td>{{this.category.catName}}</td> 
+							    <td>
+							    	<form action="admin/product/delete/{{this.prodId}}" method="delete">
+							    		<input type="hidden" name="_csrf" value="{{ token }}"></input>
+							    		<button type="submit">Delete</button>
+							    	</form>
+							    </td>
 							</tr>
-						</form>
 						{{/each}}
 					</table>
 				</section>
