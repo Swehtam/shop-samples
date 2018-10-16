@@ -14,6 +14,8 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 router.get('/', async (req, res) => {
+	console.log(req.user);
+	console.log(req.isAuthenticated());
 	let cats = category.findAll();
 	let prod = product.findAll({
 		include: [{

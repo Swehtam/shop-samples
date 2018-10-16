@@ -36,6 +36,16 @@
     width: 100%;
 }
 
+.alert-danger {
+    position: relative;
+    top: 120px;
+    padding: 10px;
+    margin: auto;
+    background-color: #ffb677; 
+    text-align: center;
+    width: 400px;
+}
+
 /* Login */
 .login-pannel {
     position: relative;

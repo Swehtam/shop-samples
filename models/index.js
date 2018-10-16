@@ -4,6 +4,8 @@ const categoryModel = require('./category');
 const userModel = require('./user');
 const config = require('../config/default');
 
+const bcrypt = require('bcrypt-nodejs');
+
 const sequelize = new Sequelize(
     config.database.DATABASE,
     config.database.USERNAME,
@@ -33,7 +35,7 @@ sequelize.sync({ force: false })
         /*
         user.create({
             email: 'rodolffoteles@hotmail.com',
-            password: '123',
+            password: bcrypt.hashSync('123', bcrypt.genSaltSync(10)),
             authorization: true
         });
 
