@@ -13,8 +13,8 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage });
 
-router.get('/', async (req, res) => {
-	console.log(req.user);
+router.get('/', isAuthenticated, async (req, res) => {
+	console.log();
 	console.log(req.isAuthenticated());
 	let cats = category.findAll();
 	let prod = product.findAll({
@@ -90,5 +90,13 @@ router.delete('/product/delete/:id', async (req, res) => {
 
 	res.redirect('/admin');
 });
+
+function isAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) { 
+    	if(req.user.authorization) return next(); 
+    	else res.redirect('/');
+    }
+    else { res.redirect('/login'); }
+}
 
 module.exports = router;

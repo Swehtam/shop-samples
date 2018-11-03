@@ -16,7 +16,7 @@
       <h1>Welcome to <span>Shop00</span></h1>
       <p>Please enter your details</p>
 
-      <form action="/account/login" method="post">
+      <form action="/login" method="post">
         <input type="hidden" name="_csrf" value="{{ token }}"></input>
         <div class="form-group">
           <label for="email">Email:</label>
@@ -29,7 +29,7 @@
          <button type="submit">Log in</button>
       </form>
 
-      <a href="/account/signup">Sign up</a>
+      <a href="/signup">Sign up</a>
     </div>
 	</main>
 </body>

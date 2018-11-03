@@ -10,7 +10,7 @@
         <div class="login-pannel">
           <p>Please enter your details</p>
 
-          <form action="/account/signup" method="post">
+          <form action="/signup" method="post">
                 <input type="hidden" name="_csrf" value="{{ token }}"></input>
                 <div class="form-group">
                     <label for="email">Email:</label>
@@ -29,7 +29,7 @@
                 <button type="submit">Sign in</button>
             </form>
 
-            <a href="/account/login">Log in</a>
+            <a href="/login">Log in</a>
         </div>
     </main>
 </body>
