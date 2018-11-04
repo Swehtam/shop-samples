@@ -42,48 +42,48 @@ button {
   margin: 3px auto;
 }
 
-.crud_section {
+.crud-section {
     border: 1px solid;
     padding: 10px;
     margin: 10px auto;
     max-width: 700px;
 }
 
-.crud_section h2 {
+.crud-section h2 {
     font-size: 25px;
     margin-bottom: 20px;
 }
 
-.crud_section input[type="text"], input[type="number"] {
+.crud-section input[type="text"], input[type="number"] {
     border-bottom: 1px solid;
     margin-bottom: 10px;
 }
 
-.crud_section input[type="file"] {
+.crud-section input[type="file"] {
   margin-bottom: 10px;
 }
 
-.crud_section textarea {
+.crud-section textarea {
   border: 1px solid;
   width: 100%;
   max-width: 675px;
   margin-bottom: 10px;
 }
 
-.crud_section table {
+.crud-section table {
     border-collapse: collapse;
     width: 100%;
 }
 
-.crud_section th, .crud_section td {
+.crud-section th, .crud_section td {
     padding: 8px;
     text-align: left;
 }
 
-.crud_section tr {
+.crud-section tr {
   border-bottom: 1px solid #000;
 }
 
-.crud_section tr:last-child {
+.crud-section tr:last-child {
   border-bottom: none;
 }

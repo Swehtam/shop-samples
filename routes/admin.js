@@ -14,8 +14,6 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 router.get('/', isAuthenticated, async (req, res) => {
-	console.log();
-	console.log(req.isAuthenticated());
 	let cats = category.findAll();
 	let prod = product.findAll({
 		include: [{
@@ -92,7 +90,7 @@ router.delete('/product/delete/:id', async (req, res) => {
 });
 
 function isAuthenticated(req, res, next) {
-    if (req.isAuthenticated()) { 
+    if(req.isAuthenticated()) { 
     	if(req.user.authorization) return next(); 
     	else res.redirect('/');
     }

@@ -1,17 +1,17 @@
 const express = require('express');
-const { category, product, user } = require('../models');
+const model = require('../models');
 const router = express.Router();
 
 router.get('/', async (req, res) => {
-	let cats = category.findAll();
-	let prod = product.findAll({
+	let categories = model.category.findAll();
+	let products = model.product.findAll({
 		include: [{
-			model: category,
+			model: model.category,
 			attributes: ['catName']
 		}]
 	});
 
-	let result = await Promise.all([cats, prod])
+	let result = await Promise.all([categories, products])
 
 	res.render('index', {
 		categories: result[0],
@@ -21,11 +21,13 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/category/:catid', async (req, res) => {
-	let cats = category.findAll();
-	let cat = category.findById(req.params.catid);
-	let prod = product.findAll({ where: {catId: req.params.catid} });
+	let categories = model.category.findAll();
+	let category = model.category.findById(req.params.catid);
+	let products = model.product.findAll({ 
+		where: {catId: req.params.catid} 
+	});
 
-	let result = await Promise.all([cats, cat, prod]);
+	let result = await Promise.all([categories, category, products]);
 
 	res.render('index', {
 		categories: result[0],
@@ -36,21 +38,31 @@ router.get('/category/:catid', async (req, res) => {
 });
 
 router.get('/product/:prodid', async (req, res) => {
-	let cats = category.findAll();
-	let prod = product.findById(req.params.prodid, {
+	let categories = model.category.findAll();
+	let product = model.product.findById(req.params.prodid, {
 		include: [{
-			model: category,
+			model: model.category,
 			attributes: ['catName']
 		}]
 	});
 
-	let result = await Promise.all([cats, prod]);
+	let result = await Promise.all([categories, product]);
 
 	res.render('product', {
 		categories: result[0],
 		product: result[1],
 		token: req.csrfToken()
 	})
+});
+
+//shopping cart handler
+router.get('/retrieve/:prodid', async (req, res) => {
+	let product = await model.product.findById(req.params.prodid, {
+  		attributes: [['prodName', 'name'], 'price']
+	});
+
+	console.log(product);
+	res.send(product);
 });
 
 router.post('/checkout', (req, res) => {

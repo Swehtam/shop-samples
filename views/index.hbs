@@ -31,9 +31,8 @@
 						<img src="/images/products/{{this.img}}">
 						<h3> {{this.prodName}} </h3>
 						<span> R$ {{this.price}}</span>
-						<input type="hidden" value="{{this.id}}">
 					</a>
-					<button>Add</button>
+					<button class="add-button" data-product-id="{{this.prodId}}">Add</button>
 				</li>
 				{{/each}}
 			</ul>

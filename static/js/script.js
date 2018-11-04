@@ -1,82 +1,99 @@
 ( function ( $ ) {
     "use strict";
 
-    let shoppingList = [];
+    if(!localStorage.getItem('shoppingCart')){
+		localStorage.shoppingCart = JSON.stringify([]);
+	}
 	
-	$('.product button').on('click', addToCart);
-	$('.cart button').on('click', checkout)
+	var shoppingList = JSON.parse(localStorage.shoppingCart);
+	updateCart();
+
+	$('.add-button').on('click', addToCart);
+	$('.checkout-button').on('click', checkout)
 
 	function addToCart(){
-		let $product = $(this).siblings()
+		let id = $(this).attr('data-product-id');
 
-		let name = $product.children('h3').text();
-		let price = parseFloat($product.children('span').text().replace(/[^\d.]/g,''));
-		let id = $product.children('input').val();
+		if(!productInCart(id)) {
+			$.ajax({
+				method: 'GET',
+				url: '/retrieve/' + id
+			})
+			.done(prod => {
+				let product = {
+					name: prod.name,
+					price: prod.price,
+					quantity: 1,
+					id: id
+				}
 
-		if(productInCart(id)){ return; }
-		
-		let product = {
-			name: name,
-			price: price,
-			count: 1,
-			id: id,
+				shoppingList.push(product);
+			});
 		}
 
-		shoppingList.push(product);
-		appendProductCart(product);
+		localStorage.shoppingCart = JSON.stringify(shoppingList);
+		updateCart();
 	}
 
 	function productInCart(id){
 		for(let i = 0; i < shoppingList.length; i++){
 			if(shoppingList[i].id == id){
+				shoppingList[i].quantity++;
 				return true;
 			}
 		}
 		return false;
 	}
 
-	function appendProductCart(product){
-		let $label = $('<label>').text(product.name);
+	function updateCart(){
+		let $cart = $('.cart-list');
+		$cart.empty();
 
-		let $hiddenInput = $('<input>').attr({
-			type: 'hidden',
-			value: product.id
-		})
+		shoppingList.forEach(product => {
+			let $label = $('<label>').text(product.name);
 
-		let $inputNumber = $('<input>').attr({
+			let $hiddenInput = $('<input>').attr({
+				type: 'hidden',
+				value: product.id
+			})
+
+			let $inputNumber = $('<input>').attr({
 				type: 'number',
-				value: '1',
+				value: product.quantity,
 				min: '0'
 			}).on('input', updatePrice);
 
-		let $output = $('<output>').text('$' + product.price);
+			let $output = $('<output>').text('$' + product.price);
 
-		$('.cart-list').append(
-			$('<li></li>')
-				.addClass('product-cart')
-				.append($label)
-				.append($hiddenInput)
-				.append($inputNumber)
-				.append($output)
-		);
+			$('.cart-list').append(
+				$('<li></li>')
+					.addClass('product-cart')
+					.append($label)
+					.append($hiddenInput)
+					.append($inputNumber)
+					.append($output)
+			);
+
+		});
 
 		updateTotal();
 	}
 
 	function updatePrice(){
-		let count = $(this).val();
+		let quantity = $(this).val();
 		let id = $(this).siblings('input[type="hidden"]').val();
 		let price = 0;
 
 		for(let i = 0; i < shoppingList.length; i++){
 			if(shoppingList[i].id == id){
 				price = shoppingList[i].price;
-				shoppingList[i].count = count;
+				shoppingList[i].quantity = quantity;
 				break;
 			}
 		}
 
-		$(this).siblings('output').text('$' + (price*count));
+		localStorage.shoppingCart = JSON.stringify(shoppingList);
+		$(this).siblings('output').text('$' + (price*quantity));
 
 		updateTotal();
 	}
@@ -84,8 +101,8 @@
 	function updateTotal(){
 		let total = 0;
 
-		shoppingList.forEach((product) => {
-			total += product.price * product.count
+		shoppingList.forEach(product => {
+			total += product.price * product.quantity
 		})
 
 		$('#value-cart').text('Total = $' + total);

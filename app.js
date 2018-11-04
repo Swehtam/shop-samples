@@ -16,7 +16,6 @@ const sessionStore = new mysqlStore({
     database: config.database.DATABASE
 });
 
-
 const app = express();
 
 app.set('view engine', 'hbs');
