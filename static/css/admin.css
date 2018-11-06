@@ -11,6 +11,7 @@
 }
 
 .logo-nav{
+  position: relative;
   width: 100%;
   min-height: 90px;
   border-bottom: 1px solid #bfb4b4;
@@ -22,10 +23,9 @@
   margin-left: 90px;
 }
 
-.logo-nav button{
+.logo-nav .user-info{
   float: right;
-  margin-top: 35px;
-  margin-right: 35px;
+  margin: 20px 35px;
 }
 
 button {
@@ -40,6 +40,10 @@ button {
   border-radius: 3px;
   padding: 3px 2px;
   margin: 3px auto;
+}
+
+.content-wrapper {
+  position: relative;
 }
 
 .crud-section {
@@ -86,4 +90,12 @@ button {
 
 .crud-section tr:last-child {
   border-bottom: none;
+}
+
+.d-none {
+  display: none;
+}
+
+.edit-box {
+  margin-top: 10px;
 }

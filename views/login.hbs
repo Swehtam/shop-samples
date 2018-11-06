@@ -4,7 +4,11 @@
 	{{>head title='Login' style='account'}}
 </head>
 <body>
-	{{> header }}
+	<header class="header-info">
+  <h3 class="header-message"><i class="fas fa-headset fa-lg"></i>24x7 live support</h3>
+  <h3 class="header-message"><i class="fas fa-truck-moving fa-lg"></i>Free Shipping on order over 500</h3>      
+  </header>
+
 	<main class="content-wrapper">
     {{#if invalid}}
     <div class="alert-danger">
@@ -13,7 +17,7 @@
     {{/if}}
 
     <div class="login-pannel">
-      <h1>Welcome to <span>Shop00</span></h1>
+      <h1>Welcome to <a href="/">Shop00</a></h1>
       <p>Please enter your details</p>
 
       <form action="/login" method="post">

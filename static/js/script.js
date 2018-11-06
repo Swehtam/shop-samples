@@ -1,4 +1,4 @@
-( function ( $ ) {
+(function($) {
     "use strict";
 
     if(!localStorage.getItem('shoppingCart')){

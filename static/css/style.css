@@ -47,7 +47,19 @@ a {
 
 .header-info .header-message i{
     margin-right: 10px;
+}
 
+.header-info .user-info{
+    color: #fff;
+    float: right;
+    display: flex;
+    flex-direction: row-reverse;
+    margin-top: 10px;
+}
+
+.user-info button {
+    width: 100px;
+    margin: 0 20px;
 }
 
 /* Logo Nav*/

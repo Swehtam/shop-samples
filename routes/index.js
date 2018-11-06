@@ -16,6 +16,7 @@ router.get('/', async (req, res) => {
 	res.render('index', {
 		categories: result[0],
 		products: result[1],
+		user: req.user,
 		token: req.csrfToken()
 	})
 });
@@ -33,6 +34,7 @@ router.get('/category/:catid', async (req, res) => {
 		categories: result[0],
 		category: result[1].catName,
 		products: result[2],
+		user: req.user,
 		token: req.csrfToken()
 	})
 });
@@ -51,6 +53,7 @@ router.get('/product/:prodid', async (req, res) => {
 	res.render('product', {
 		categories: result[0],
 		product: result[1],
+		user: req.user,
 		token: req.csrfToken()
 	})
 });
@@ -60,8 +63,7 @@ router.get('/retrieve/:prodid', async (req, res) => {
 	let product = await model.product.findById(req.params.prodid, {
   		attributes: [['prodName', 'name'], 'price']
 	});
-
-	console.log(product);
+	
 	res.send(product);
 });
 

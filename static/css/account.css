@@ -64,7 +64,7 @@
     margin-bottom: 30px;
 }
 
-.login-pannel h1>span {
+.login-pannel h1>a {
     color: #111;
     font-size: 2.9rem;
 }

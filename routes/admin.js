@@ -27,8 +27,13 @@ router.get('/', isAuthenticated, async (req, res) => {
 	res.render('admin', {
 		categories: result[0],
 		products: result[1],
-		token: req.csrfToken()
-	});
+		user: req.user,
+		token: req.csrfToken(),
+		helpers: {
+       		ifEquals:  function(arg1, arg2, options) {
+    			return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
+			}
+    }});
 })
 
 router.post('/category/create', async (req, res) => {
@@ -39,10 +44,10 @@ router.post('/category/create', async (req, res) => {
 	res.redirect('/admin');
 });
 
-router.put('/category/update', async (req, res) => {
+router.get('/category/edit/:catid', async (req, res) => {
 	await category.update(
 		{ catName: req.body.name },
-		{ where: { catId: req.body.id } }
+		{ where: { catId: req.params.catid } }
   	);
 
 	res.redirect('/admin');
@@ -61,29 +66,39 @@ router.post('/product/create', upload.single('img'), async (req, res) => {
 		prodName: req.body.name,
        	price: req.body.price,
        	description: req.body.description,
-        img: req.body.img,
+        img: req.file.filename,
         catId: req.body.category
 	})
 	
 	res.redirect('/admin');
 });
 
-router.put('/product/update', async (req, res) => {
-	await product.update({
-		prodName: req.body.name,
-       	price: req.body.price,
-       	description: req.body.description,
-        img: req.body.img,
-        catId: req.body.category },
-		{ where: req.body.id }
-  	);
-
+router.post('/product/edit/:prodid', upload.single('img'), async (req, res) => {
+	if(req.file){
+		await product.update({
+			prodName: req.body.name,
+	       	price: req.body.price,
+	       	description: req.body.description,
+	        img: req.file.filename,
+	        catId: req.body.category },
+			{ where: {prodId: req.params.prodid} }
+  		);
+	} else {
+		await product.update({
+			prodName: req.body.name,
+	       	price: req.body.price,
+	       	description: req.body.description,
+	        catId: req.body.category },
+			{ where: {prodId: req.params.prodid} }
+  		);
+	}
+	
 	res.redirect('/admin');
 });
 
-router.delete('/product/delete/:id', async (req, res) => {
+router.get('/product/delete/:prodid', async (req, res) => {
 	await product.destroy({
-		where: {prodId: req.params.id}
+		where: {prodId: req.params.prodid}
 	});
 
 	res.redirect('/admin');
