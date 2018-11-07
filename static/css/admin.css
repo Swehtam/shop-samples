@@ -42,53 +42,57 @@ button {
   margin: 3px auto;
 }
 
+.logout-button {
+    width: 100px;
+}
+
 .content-wrapper {
   position: relative;
 }
 
-.crud-section {
+section {
     border: 1px solid;
     padding: 10px;
     margin: 10px auto;
     max-width: 700px;
 }
 
-.crud-section h2 {
+section h2 {
     font-size: 25px;
     margin-bottom: 20px;
 }
 
-.crud-section input[type="text"], input[type="number"] {
+section input[type="text"], input[type="number"] {
     border-bottom: 1px solid;
     margin-bottom: 10px;
 }
 
-.crud-section input[type="file"] {
+section input[type="file"] {
   margin-bottom: 10px;
 }
 
-.crud-section textarea {
+section textarea {
   border: 1px solid;
   width: 100%;
   max-width: 675px;
   margin-bottom: 10px;
 }
 
-.crud-section table {
-    border-collapse: collapse;
-    width: 100%;
+section table {
+  border-collapse: collapse;
+  width: 100%;
 }
 
-.crud-section th, .crud_section td {
-    padding: 8px;
-    text-align: left;
+section th, section td {
+  padding: 8px;
+  text-align: left;
 }
 
-.crud-section tr {
+section tr {
   border-bottom: 1px solid #000;
 }
 
-.crud-section tr:last-child {
+section tr:last-child {
   border-bottom: none;
 }
 
@@ -98,4 +102,15 @@ button {
 
 .edit-box {
   margin-top: 10px;
+}
+
+.product-img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+}
+
+.alert-sucess {
+    font-size: 25px;
+    text-align: center;
 }

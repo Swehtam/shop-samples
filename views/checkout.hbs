@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+	{{>head title='Shop00' style='admin'}}
+<body>
+	<nav class="logo-nav">
+		<a href="/"><img src="/images/logoblack.png"></a>
+
+		<div class="user-info">
+			<small>{{user.email}}</small>
+			<form action="/logout" method="get"/>
+				<button class="logout-button" type="submit">Logout</button>
+			</form>
+		</div>
+	</nav>
+
+	<main class="content-wrapper">
+		<section>
+			<h2>Products list</h2>
+			<table id="products-table">
+				<tr>
+					<th>Image</th>
+				    <th>Name</th>
+				    <th>Unitary price</th> 
+				    <th>Quantity</th>
+				    <th>Price</th>
+				</tr>
+			</table>
+		</section>
+
+		<section>
+			<h2>Payment type</h2>
+			<table id="products-table">
+				<tr>
+					<th>
+						<input type="radio" name="payment" value="slip">Bank slip
+					</th>
+					<th>
+						<input type="radio" name="payment" value="card">Credit card
+					</th>
+					<th>
+						<input type="radio" name="payment" value="transfer">Bank transfer
+					</th> 
+				</tr>
+			</table>
+		</section>
+
+		<button id="confirm-button">Confirm</button>
+	</main>
+
+	<form action="/checkout/confirm" method="get" id="form-confirm">
+	</form>
+	
+	<script type="text/javascript" src="/js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="/js/checkout.js"></script>
+</body>
+</html>

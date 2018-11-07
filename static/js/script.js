@@ -1,37 +1,36 @@
 (function($) {
     "use strict";
 
-    if(!localStorage.getItem('shoppingCart')){
-		localStorage.shoppingCart = JSON.stringify([]);
+    if(!sessionStorage.getItem('shoppingCart')){
+		sessionStorage.shoppingCart = JSON.stringify([]);
 	}
 	
-	var shoppingList = JSON.parse(localStorage.shoppingCart);
+	var shoppingList = JSON.parse(sessionStorage.shoppingCart);
 	updateCart();
 
 	$('.add-button').on('click', addToCart);
-	$('.checkout-button').on('click', checkout)
 
-	function addToCart(){
+	async function addToCart(){
 		let id = $(this).attr('data-product-id');
 
 		if(!productInCart(id)) {
-			$.ajax({
+			let prod = await $.ajax({
 				method: 'GET',
 				url: '/retrieve/' + id
 			})
-			.done(prod => {
-				let product = {
-					name: prod.name,
-					price: prod.price,
-					quantity: 1,
-					id: id
-				}
+			
+			let product = {
+				name: prod.name,
+				price: prod.price,
+				img: prod.img,
+				quantity: 1,
+				id: id
+			}
 
-				shoppingList.push(product);
-			});
+			shoppingList.push(product);
 		}
 
-		localStorage.shoppingCart = JSON.stringify(shoppingList);
+		sessionStorage.shoppingCart = JSON.stringify(shoppingList);
 		updateCart();
 	}
 
@@ -50,7 +49,8 @@
 		$cart.empty();
 
 		shoppingList.forEach(product => {
-			let $label = $('<label>').text(product.name);
+			let $line = $('<tr></tr>').addClass('product-cart');
+			$line.append($('<td></td>').text(product.name));
 
 			let $hiddenInput = $('<input>').attr({
 				type: 'hidden',
@@ -63,17 +63,19 @@
 				min: '0'
 			}).on('input', updatePrice);
 
-			let $output = $('<output>').text('$' + product.price);
-
-			$('.cart-list').append(
-				$('<li></li>')
-					.addClass('product-cart')
-					.append($label)
-					.append($hiddenInput)
-					.append($inputNumber)
-					.append($output)
+			$line.append($('<td></td>')
+				.append($hiddenInput)
+				.append($inputNumber)
 			);
 
+			$line.append($('<td></td>')
+				.addClass('output')
+				.text('$' + (product.price*product.quantity).toFixed(2))
+			);
+
+			let $output = $('<output>').text();
+
+			$('.cart-list').append($line);
 		});
 
 		updateTotal();
@@ -82,19 +84,22 @@
 	function updatePrice(){
 		let quantity = $(this).val();
 		let id = $(this).siblings('input[type="hidden"]').val();
-		let price = 0;
+		let product;
 
 		for(let i = 0; i < shoppingList.length; i++){
 			if(shoppingList[i].id == id){
-				price = shoppingList[i].price;
+				product = shoppingList[i];
 				shoppingList[i].quantity = quantity;
 				break;
 			}
 		}
 
-		localStorage.shoppingCart = JSON.stringify(shoppingList);
-		$(this).siblings('output').text('$' + (price*quantity));
+		$(this)
+			.parent()
+			.siblings('.output')
+			.text('$' + (product.price*product.quantity).toFixed(2))
 
+		sessionStorage.shoppingCart = JSON.stringify(shoppingList);
 		updateTotal();
 	}
 
@@ -105,12 +110,8 @@
 			total += product.price * product.quantity
 		})
 
-		$('#value-cart').text('Total = $' + total);
+		$('#value-cart').text('Total = $' + total.toFixed(2));
 	}
-
-	function checkout(){
-		$.post('/checkout', { shoppingList: shoppingList } );
-	}
-
+	
 })(jQuery);
 

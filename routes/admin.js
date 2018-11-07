@@ -44,7 +44,7 @@ router.post('/category/create', async (req, res) => {
 	res.redirect('/admin');
 });
 
-router.get('/category/edit/:catid', async (req, res) => {
+router.post('/category/edit/:catid', async (req, res) => {
 	await category.update(
 		{ catName: req.body.name },
 		{ where: { catId: req.params.catid } }

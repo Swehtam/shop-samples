@@ -11,14 +11,14 @@ router.get('/', async (req, res) => {
 		}]
 	});
 
-	let result = await Promise.all([categories, products])
+	let result = await Promise.all([categories, products]);
 
 	res.render('index', {
 		categories: result[0],
 		products: result[1],
 		user: req.user,
 		token: req.csrfToken()
-	})
+	});
 });
 
 router.get('/category/:catid', async (req, res) => {
@@ -61,14 +61,25 @@ router.get('/product/:prodid', async (req, res) => {
 //shopping cart handler
 router.get('/retrieve/:prodid', async (req, res) => {
 	let product = await model.product.findById(req.params.prodid, {
-  		attributes: [['prodName', 'name'], 'price']
+  		attributes: [['prodName', 'name'], 'price', 'img']
 	});
 	
 	res.send(product);
 });
 
-router.post('/checkout', (req, res) => {
-	console.log(req.body.shoppingList);
+router.get('/checkout', isAuthenticated, (req, res) => {
+	res.render('checkout', {
+		user: req.user
+	});
 });
+
+router.get('/checkout/confirm', isAuthenticated, (req, res) => {
+	res.redirect('/');
+});
+
+function isAuthenticated(req, res, next) {
+    if(req.isAuthenticated()) { return next(); } 
+    else { res.redirect('/login'); }
+}
 
 module.exports = router;

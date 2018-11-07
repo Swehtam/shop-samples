@@ -33,9 +33,9 @@ app.use(validator());
 app.use(session({
     key: 'session_store',
     secret: 'session_secret',
-    resave: true,
+    resave: false,
     store: sessionStore,
-    saveUninitialized: true
+    saveUninitialized: false
 }));
 app.use(passport.initialize());
 app.use(passport.session());

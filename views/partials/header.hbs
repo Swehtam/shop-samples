@@ -8,10 +8,10 @@
 	<form action="/logout" method="get">
 		<button type="submit"> Logout </button>
 	</form>
+	{{#if user.authorization}}<a href="/admin"><button>Admin</button></a>{{/if}}
 	<small>{{user.email}}</small>
 	{{else}}
 	<a href="/login"><button>Log in</button></a>
 	{{/if}}
 	</div>
-	
 </header>
