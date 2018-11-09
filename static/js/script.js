@@ -7,7 +7,7 @@
 
 		let table = await $.ajax({
 			method: 'GET',
-			url: 'cart/add/' + id
+			url: '../cart/add/' + id
 		})
 
 		$cart.empty();
@@ -19,7 +19,7 @@
 
 		let table = await $.ajax({
 			method: 'GET',
-			url: 'cart/remove/' + id
+			url: '../cart/remove/' + id
 		});
 
 		$cart.empty();
