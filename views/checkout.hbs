@@ -24,33 +24,29 @@
 				    <th>Quantity</th>
 				    <th>Price</th>
 				</tr>
-			</table>
-		</section>
-
-		<section>
-			<h2>Payment type</h2>
-			<table id="products-table">
+				{{#each cart}}
 				<tr>
-					<th>
-						<input type="radio" name="payment" value="slip">Bank slip
-					</th>
-					<th>
-						<input type="radio" name="payment" value="card">Credit card
-					</th>
-					<th>
-						<input type="radio" name="payment" value="transfer">Bank transfer
-					</th> 
+					<td><img src="/images/products/{{this.img}}" class="product-img"></td>
+					<td>{{this.name}}</td>
+					<td>${{this.price}}</td>
+					<td>{{this.quantity}}</td>
+					<td>${{mult this.quantity this.price}} </td>
+				</tr>
+				{{/each}}
+
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td>Total: </td>
+					<td>${{total}}</td>
 				</tr>
 			</table>
 		</section>
 
-		<button id="confirm-button">Confirm</button>
+		<a href="/checkout/confirm"><button id="confirm-button">Confirm</button></a>
 	</main>
 
-	<form action="/checkout/confirm" method="get" id="form-confirm">
-	</form>
-	
 	<script type="text/javascript" src="/js/jquery-3.2.1.min.js"></script>
-	<script type="text/javascript" src="/js/checkout.js"></script>
 </body>
 </html>

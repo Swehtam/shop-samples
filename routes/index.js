@@ -3,6 +3,11 @@ const model = require('../models');
 const router = express.Router();
 
 router.get('/', async (req, res) => {
+	if(!req.session.cart){
+		req.session.cart = [];
+		req.session.total = 0;
+	}
+
 	let categories = model.category.findAll();
 	let products = model.product.findAll({
 		include: [{
@@ -17,6 +22,8 @@ router.get('/', async (req, res) => {
 		categories: result[0],
 		products: result[1],
 		user: req.user,
+		cart: req.session.cart,
+		total: req.session.total,
 		token: req.csrfToken()
 	});
 });
@@ -35,6 +42,8 @@ router.get('/category/:catid', async (req, res) => {
 		category: result[1].catName,
 		products: result[2],
 		user: req.user,
+		cart: req.session.cart,
+		total: req.session.total,
 		token: req.csrfToken()
 	})
 });
@@ -54,26 +63,24 @@ router.get('/product/:prodid', async (req, res) => {
 		categories: result[0],
 		product: result[1],
 		user: req.user,
+		cart: req.session.cart,
+		total: req.session.total,
 		token: req.csrfToken()
 	})
 });
 
-//shopping cart handler
-router.get('/retrieve/:prodid', async (req, res) => {
-	let product = await model.product.findById(req.params.prodid, {
-  		attributes: [['prodName', 'name'], 'price', 'img']
-	});
-	
-	res.send(product);
-});
-
 router.get('/checkout', isAuthenticated, (req, res) => {
 	res.render('checkout', {
-		user: req.user
+		user: req.user,
+		cart: req.session.cart,
+		total: req.session.total,
+		token: req.csrfToken()
 	});
 });
 
 router.get('/checkout/confirm', isAuthenticated, (req, res) => {
+	req.session.cart = [];
+	req.session.total = 0;
 	res.redirect('/');
 });
 

@@ -82,7 +82,6 @@ a {
     color: #111;
     margin-top: 35px;
     margin-right: 100px;
-    cursor: pointer;
 }
 
 .logo-nav .cart i{
@@ -158,7 +157,15 @@ button {
     margin: 3px auto;
 }
 
-
+.remove-button {
+    cursor: pointer;
+    padding: 0px;
+    margin: 0px;
+    border-radius: 0px;
+    background-color: #fff;
+    font-weight: normal;
+    color: #000;
+}
 
 /*Main*/
 .content-wrapper{

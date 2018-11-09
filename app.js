@@ -22,7 +22,10 @@ app.set('view engine', 'hbs');
 app.engine('hbs', hbs({
     layoutsDir: __dirname + '/views', 
     partialsDir: __dirname + '/views/partials',
-    extname: 'hbs'
+    extname: 'hbs',
+    helpers: {
+        mult:  function(arg1, arg2){ return (arg1*arg2).toFixed(2); }
+    }
 }));
 app.use(express.static(__dirname + '/static'));
 app.use(bodyParser.json());
@@ -44,5 +47,6 @@ initPassport(passport);
 app.use('/', require('./routes/index'));
 app.use('/admin', require('./routes/admin'));
 app.use('/', require('./routes/account'));
+app.use('/cart', require('./routes/cart'));
 
 app.listen(config.port);

@@ -1,0 +1,18 @@
+<i class="fas fa-shopping-cart"></i>CART ${{total}}
+<div class="cart-content">
+	<h3 class="header-cart-content"> Shopping List </h3>
+	<table class="cart-list" align="right">
+		{{#each cart}}
+		<tr>
+		<td>{{this.name}}</td>
+		<td>{{this.quantity}}</td>
+		<td>${{mult this.quantity this.price}} </td>
+		<td>
+			<button class="remove-button" data-product-id="{{this.id}}">&times;</button>
+		</td>
+		</tr>
+		{{/each}}
+	</table>
+	<div id="value-cart">Total = ${{total}}</div>
+	<a href="/checkout"><button>Checkout</button></a>
+</div>
